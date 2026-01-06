@@ -18,11 +18,13 @@ announcements:
   scrollable: true # adds a vertical scroll bar if there are more than 3 news items
   limit: 5 # leave blank to include all the news in the `_news` folder
 
+
 # latest_posts:
 #   enabled: false
 #   scrollable: true # adds a vertical scroll bar if there are more than 3 new posts items
 #   limit: 3 # leave blank to include all the blog posts
 ---
+
 I am a second-year MS student in Computer Science at the [University of Cincinnati](https://www.uc.edu/), where I work in the [CincyNLP](https://jiangtianyu.com/lab/) lab advised by Prof. [Tianyu Jiang](https://jiangtianyu.com/). My research interests center on large language models (LLMs), computational semantics, and cultural NLP.
 
 Currently, I work as a Research Assistant at UC’s 1819 Innovation Hub for [Procter & Gamble](https://us.pg.com/). Previously, I was a Software Engineer at [CommScope Networks](https://www.commscope.com/). I earned a Bachelor’s degree in Computer Science and Engineering from [SRMIST](https://srmrmp.edu.in/").
