@@ -41,27 +41,5 @@
       "text": "Started a software engineering internship at CommScope, Bangalore."
     }
   ],
-  "blogs": [
-    {
-      "title": "Blog post title",
-      "url": "#",
-      "date": "Month YYYY",
-      "summary": "Two to three sentences describing the post, key takeaway, or hook.",
-      "tags": ["NLP", "Research"]
-    },
-    {
-      "title": "Blog post title",
-      "url": "#",
-      "date": "Month YYYY",
-      "summary": "Two to three sentences describing the post, key takeaway, or hook.",
-      "tags": ["NLP", "Research"]
-    },
-    {
-      "title": "Blog post title",
-      "url": "#",
-      "date": "Month YYYY",
-      "summary": "Two to three sentences describing the post, key takeaway, or hook.",
-      "tags": ["NLP", "Research"]
-    }
-  ]
+  "blogs": []
 }

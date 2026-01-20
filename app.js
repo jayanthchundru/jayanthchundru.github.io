@@ -159,10 +159,17 @@ fetch(dataUrl)
     }
 
     const blogList = document.getElementById("blogs-list");
-    if (blogList && Array.isArray(data.blogs)) {
-      data.blogs.forEach((post) => {
-        blogList.append(buildBlogItem(post));
-      });
+    if (blogList) {
+      if (Array.isArray(data.blogs) && data.blogs.length) {
+        data.blogs.forEach((post) => {
+          blogList.append(buildBlogItem(post));
+        });
+      } else {
+        const message = document.createElement("p");
+        message.className = "blog-empty";
+        message.textContent = "Coming soon.";
+        blogList.append(message);
+      }
     }
   })
   .catch((error) => {
