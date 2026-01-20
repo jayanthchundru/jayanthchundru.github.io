@@ -521,29 +521,11 @@ nav a:hover {
   }
 }
 
-@media (max-width: 980px) {
+@media (max-width: 720px) {
   .hero {
     grid-template-columns: 1fr;
   }
 
-  .columns {
-    column-count: 2;
-  }
-
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .timeline {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .pub-item {
-    grid-template-columns: 180px 1fr;
-  }
-}
-
-@media (max-width: 720px) {
   .masthead {
     grid-template-columns: 1fr;
     text-align: center;
@@ -570,6 +552,23 @@ nav a:hover {
 
   .timeline {
     grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: left;
+  }
+
+  .sidebar img {
+    max-width: 380px;
+    margin: 0 auto;
+  }
+
+  .sidebar-location {
+    width: min(380px, 100%);
+    justify-content: flex-start;
   }
 
   .pub-item {
