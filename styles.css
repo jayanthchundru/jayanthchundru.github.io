@@ -302,6 +302,7 @@ nav a:hover {
   grid-template-columns: 220px 1fr;
   gap: 24px;
   align-items: start;
+  padding: 20px;
 }
 
 .pub-thumb {
@@ -331,7 +332,7 @@ nav a:hover {
 .pub-title {
   margin: 0 0 6px;
   font-family: "Source Serif 4", "Georgia", serif;
-  font-size: 1.15rem;
+  font-size: clamp(0.95rem, 0.5vw + 0.85rem, 1.15rem);
 }
 
 .pub-title a {
@@ -344,7 +345,7 @@ nav a:hover {
 }
 
 .pub-authors {
-  font-size: 0.95rem;
+  font-size: clamp(0.85rem, 0.4vw + 0.75rem, 0.95rem);
 }
 
 .pub-venue {
@@ -355,14 +356,14 @@ nav a:hover {
 
 .pub-abstract {
   margin: 0 0 8px;
-  font-size: 0.95rem;
+  font-size: clamp(0.85rem, 0.4vw + 0.75rem, 0.95rem);
   line-height: 1.6;
 }
 
 .pub-links a {
   color: var(--accent-deep);
   text-decoration: none;
-  font-size: 0.9rem;
+  font-size: clamp(0.8rem, 0.35vw + 0.75rem, 0.9rem);
 }
 
 .pub-links {
@@ -542,6 +543,11 @@ nav a:hover {
     text-align: center;
   }
 
+  main {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
   nav {
     flex-wrap: wrap;
     justify-content: center;
@@ -558,6 +564,32 @@ nav a:hover {
 
   .timeline {
     grid-template-columns: 1fr;
+  }
+
+  .pub-item {
+    width: 92%;
+    max-width: 600px;
+    margin: 0 auto;
+    grid-template-columns: 140px 1fr;
+    gap: 16px;
+    padding: 16px;
+  }
+
+  .pub-thumb {
+    min-height: 120px;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 520px) {
+  .pub-item {
+    grid-template-columns: 120px 1fr;
+    gap: 12px;
+    padding: 14px;
+  }
+
+  .pub-thumb {
+    min-height: 110px;
   }
 }
 
