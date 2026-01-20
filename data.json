@@ -1,0 +1,67 @@
+{
+  "publications": [
+    {
+      "title": "Do LLMs Encode Frame Semantics? Evidence From Frame Identification",
+      "url": "https://aclanthology.org/2025.emnlp-main.1499.pdf",
+      "authors": "Jayanth Krishna Chundru, Rudrashis Poddar, Jie Cao, Tianyu Jiang",
+      "highlight": "Jayanth Krishna Chundru",
+      "venue": "EMNLP",
+      "year": "2025",
+      "abstract": "We investigate whether large language models encode latent knowledge of frame semantics, focusing on frame identification, a core challenge in frame semantic parsing that involves selecting the appropriate semantic frame for a target word in context. Using the FrameNet lexical resource, we evaluate models under prompt-based inference and observe that they can perform frame identification effectively even without explicit supervision. To assess the impact of task-specific training, we fine-tune the model on FrameNet data, which substantially improves in-domain accuracy while generalizing well to out-of-domain benchmarks. Further analysis shows that the models can generate semantically coherent frame definitions, highlighting the model's internalized understanding of frame semantics.",
+      "thumb": "images/EMNLP2025_FrameIdentification.png",
+      "links": {
+        "paper": "https://aclanthology.org/2025.emnlp-main.1499/",
+        "code": "https://github.com/cincynlp/FrameID"
+      }
+    }
+  ],
+  "news": [
+    {
+      "date": "Aug 2025",
+      "text": "Paper accepted to EMNLP 2025."
+    },
+    {
+      "date": "May 2025",
+      "text": "Joined Procter & Gamble (UC Digital Accelerator Program) as a Research Assistant."
+    },
+    {
+      "date": "Aug 2024",
+      "text": "Moved to the United States to begin my master's degree."
+    },
+    {
+      "date": "May 2023",
+      "text": "Continued at CommScope as a Software Engineer."
+    },
+    {
+      "date": "May 2023",
+      "text": "Graduated with a Silver Medal in the 2023 Bachelor's degree cohort."
+    },
+    {
+      "date": "Jul 2022",
+      "text": "Started a software engineering internship at CommScope, Bangalore."
+    }
+  ],
+  "blogs": [
+    {
+      "title": "Blog post title",
+      "url": "#",
+      "date": "Month YYYY",
+      "summary": "Two to three sentences describing the post, key takeaway, or hook.",
+      "tags": ["NLP", "Research"]
+    },
+    {
+      "title": "Blog post title",
+      "url": "#",
+      "date": "Month YYYY",
+      "summary": "Two to three sentences describing the post, key takeaway, or hook.",
+      "tags": ["NLP", "Research"]
+    },
+    {
+      "title": "Blog post title",
+      "url": "#",
+      "date": "Month YYYY",
+      "summary": "Two to three sentences describing the post, key takeaway, or hook.",
+      "tags": ["NLP", "Research"]
+    }
+  ]
+}
