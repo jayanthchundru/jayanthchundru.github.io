@@ -1,0 +1,43 @@
+{
+  "id": "research-notes-system",
+  "title": "Beyond the Paper: How I Organize Research Notes",
+  "kicker": "Workflow Notes",
+  "date": "Jun 2025",
+  "readTime": "5 min read",
+  "summary": "A lightweight system for turning papers into usable ideas and reusable code snippets.",
+  "tags": [
+    "Beyond Research",
+    "Technical"
+  ],
+  "hero": null,
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "This is the lightweight system I use to turn papers into reusable ideas, experiments, and code."
+    },
+    {
+      "type": "quote",
+      "text": "Notes are only useful when they lead to a decision."
+    },
+    {
+      "type": "heading",
+      "text": "The three-part capture"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Summary: the core claim in a few lines.",
+        "Notes: methods, datasets, and red flags.",
+        "Actions: experiments or code to try next."
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Templates that save time"
+    },
+    {
+      "type": "paragraph",
+      "text": "I keep a single markdown template and link it to a project board. Every note ends with a single action, even if it is \"do nothing.\""
+    }
+  ]
+}

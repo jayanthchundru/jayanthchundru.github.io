@@ -1,0 +1,41 @@
+{
+  "id": "llm-experiments",
+  "title": "From Baselines to Breakthroughs: A Month of LLM Experiments",
+  "kicker": "Experiment Diary",
+  "date": "Aug 2025",
+  "readTime": "7 min read",
+  "summary": "A behind-the-scenes look at failures, ablations, and the two tweaks that mattered most.",
+  "tags": [
+    "Technical"
+  ],
+  "hero": null,
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "A month of experiments taught me that iteration speed beats fancy architecture changes. Here are the notes I wish I had on day one."
+    },
+    {
+      "type": "quote",
+      "text": "The boring fix worked every time."
+    },
+    {
+      "type": "heading",
+      "text": "Baseline discipline"
+    },
+    {
+      "type": "paragraph",
+      "text": "The most useful baseline was the simplest one with meticulous logging. It saved time when later variants underperformed."
+    },
+    {
+      "type": "heading",
+      "text": "Two changes that mattered"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Adding task-specific examples to the system prompt.",
+        "Normalizing output formats to reduce evaluation noise."
+      ]
+    }
+  ]
+}

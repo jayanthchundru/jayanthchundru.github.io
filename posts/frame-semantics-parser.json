@@ -1,0 +1,49 @@
+{
+  "id": "frame-semantics-parser",
+  "title": "Frame Semantics: What I Learned Building a Parser",
+  "kicker": "Frame Semantics Notes",
+  "date": "Sep 2025",
+  "readTime": "6 min read",
+  "summary": "Notes on evaluation pitfalls, prompt design, and the small decisions that improved frame identification accuracy.",
+  "tags": [
+    "Technical",
+    "Beyond Research"
+  ],
+  "hero": {
+    "src": "images/EMNLP2025_FrameIdentification.png",
+    "alt": "Frame identification visualization"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "This post captures the practical lessons from building a frame identification pipeline and the decisions that moved the needle."
+    },
+    {
+      "type": "quote",
+      "text": "Calibration and abstention were the difference between decent and dependable."
+    },
+    {
+      "type": "heading",
+      "text": "Where the task breaks"
+    },
+    {
+      "type": "paragraph",
+      "text": "The hardest part was not finding the frame but deciding when to abstain. Calibration mattered more than expected, especially with ambiguous triggers."
+    },
+    {
+      "type": "heading",
+      "text": "What worked reliably"
+    },
+    {
+      "type": "paragraph",
+      "text": "Consistent templates and stronger negative examples improved precision. The biggest gains came from tightening the evaluation set and tracking per-frame confusion."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Ship a lightweight error dashboard to spot drift early.",
+        "Expand diagnostics for rare frames and domain shifts."
+      ]
+    }
+  ]
+}

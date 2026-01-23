@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog Post</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800&family=Source+Serif+4:wght@300;400;500;600&family=Unica+One&display=swap"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main>
+      <header class="reveal" style="--delay: 0s">
+        <nav class="back-nav">
+          <a href="blogs.html" class="icon-link" aria-label="Back to blogs">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M15.5 5 7 12l8.5 7L17 17l-6-5 6-5-1.5-2z" />
+            </svg>
+            Back to blogs
+          </a>
+        </nav>
+      </header>
+
+      <div class="post-shell">
+        <button class="toc-rail" id="toc-rail" type="button" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <aside class="post-toc" id="post-toc-panel" aria-hidden="true">
+          <div class="post-toc-title">Contents</div>
+          <nav id="post-toc"></nav>
+        </aside>
+
+        <article class="post">
+          <header class="post-header reveal" style="--delay: 0.1s">
+            <div class="post-kicker" id="post-kicker"></div>
+            <h1 class="post-title" id="post-title"></h1>
+            <div class="post-author" id="post-author"></div>
+            <div class="post-tags" id="post-tags"></div>
+          </header>
+
+          <div class="post-hero-image reveal" id="post-hero" style="--delay: 0.15s"></div>
+
+          <div class="post-content reveal" id="post-content" style="--delay: 0.2s"></div>
+        </article>
+      </div>
+    </main>
+    <script src="post.js"></script>
+  </body>
+</html>

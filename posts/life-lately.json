@@ -1,0 +1,114 @@
+{
+  "id": "life-lately",
+  "title": "Life Lately",
+  "kicker": "Life Lately",
+  "date": "Jan 2026",
+  "readTime": "∞∞",
+  "summary": "A running log of trips, meals, and small joys outside of work.",
+  "tags": [
+    "Life Lately"
+  ],
+  "hero": null,
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "A continuous page of the fun stuff I want to remember"
+    },
+    {
+      "type": "heading",
+      "text": "Weekend at Nashville",
+      "date": "Jan 2026"
+    },
+    {
+      "type": "gallery",
+      "caption": "A quick photo log from the Nashville weekend.",
+      "images": [
+        {
+          "src": "images/Nashville/IMG_0031.jpg",
+          "alt": "Nashville photo"
+        },
+        {
+          "src": "images/Nashville/IMG_0042.jpg",
+          "alt": "Nashville photo"
+        },
+        {
+          "src": "images/Nashville/IMG_0048.jpg",
+          "alt": "Nashville photo"
+        },
+        {
+          "src": "images/Nashville/IMG_0056.jpg",
+          "alt": "Nashville photo"
+        },
+        {
+          "src": "images/Nashville/IMG_0059.jpg",
+          "alt": "Nashville photo"
+        },
+        {
+          "src": "images/Nashville/IMG_0072.jpeg",
+          "alt": "Nashville photo"
+        },
+        {
+          "src": "images/Nashville/IMG_0067.jpeg",
+          "alt": "Nashville photo"
+        },
+        {
+          "src": "images/Nashville/IMG_0069.jpeg",
+          "alt": "Nashville photo"
+        },
+        {
+          "src": "images/Nashville/IMG_0076.jpeg",
+          "alt": "Nashville photo"
+        },
+        {
+          "src": "images/Nashville/IMG_0078.jpeg",
+          "alt": "Nashville photo"
+        },
+        {
+          "src": "images/Nashville/IMG_0080.jpeg",
+          "alt": "Nashville photo"
+        },
+        {
+          "src": "images/Nashville/IMG_0084.jpeg",
+          "alt": "Nashville photo"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Baking muffins first time",
+      "date": "Jun 2025"
+    },
+    {
+      "type": "gallery",
+      "caption": "Warm, fresh muffins straight from the oven.",
+      "autoplay": true ,
+      "autoplayDelay": 5000,
+      "images": [
+        {
+          "src": "images/Baking/IMG_8260.jpeg",
+          "alt": "Close-up of muffins with golden tops"
+        },
+        {
+          "src": "images/Baking/IMG_8253.jpeg",
+          "alt": "Blueberry muffins on a baking tray"
+        },
+        {
+          "src": "images/Baking/IMG_8257.jpeg",
+          "alt": "Freshly baked muffins cooling"
+        },
+        {
+          "src": "images/Baking/IMG_8269.jpeg",
+          "alt": "Muffins arranged on a plate"
+        },
+        {
+          "src": "images/Baking/IMG_8275.jpeg",
+          "alt": "Muffins ready to serve"
+        },
+        {
+          "src": "images/Baking/IMG_8277.jpeg",
+          "alt": "Muffins with a soft, airy crumb"
+        }
+      ]
+    } 
+  ]
+}

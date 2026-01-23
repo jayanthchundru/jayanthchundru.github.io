@@ -12,6 +12,95 @@ if (updated) {
 }
 
 const dataUrl = "data.json";
+const blogsUrl = "blogs.json";
+
+const monthNames = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+];
+
+const parseMonthYear = (value) => {
+  if (!value) {
+    return null;
+  }
+  const text = String(value).trim();
+  let match = text.match(/^(\d{4})[/-](\d{1,2})$/);
+  if (match) {
+    const year = Number(match[1]);
+    const month = Number(match[2]);
+    if (month >= 1 && month <= 12) {
+      return { year, month };
+    }
+  }
+  match = text.match(/^(\d{1,2})[/-](\d{4})$/);
+  if (match) {
+    const month = Number(match[1]);
+    const year = Number(match[2]);
+    if (month >= 1 && month <= 12) {
+      return { year, month };
+    }
+  }
+  match = text.match(/^([A-Za-z]+)\s+(\d{4})$/);
+  if (match) {
+    const monthText = match[1].toLowerCase();
+    const year = Number(match[2]);
+    const monthIndex = monthNames.findIndex(
+      (name) => name.toLowerCase() === monthText.slice(0, 3),
+    );
+    if (monthIndex >= 0) {
+      return { year, month: monthIndex + 1 };
+    }
+  }
+  return null;
+};
+
+const formatMonthYear = (value) => {
+  const parsed = parseMonthYear(value);
+  if (!parsed) {
+    return value || "";
+  }
+  const monthLabel = monthNames[parsed.month - 1] || "";
+  return `${monthLabel} ${parsed.year}`;
+};
+
+const sortByDateDesc = (posts) => {
+  return posts
+    .map((post, index) => ({
+      post,
+      index,
+      parsed: parseMonthYear(post.date),
+      pinned: Boolean(post.pinned),
+    }))
+    .sort((a, b) => {
+      if (a.pinned !== b.pinned) {
+        return a.pinned ? -1 : 1;
+      }
+      if (a.parsed && b.parsed) {
+        if (a.parsed.year !== b.parsed.year) {
+          return b.parsed.year - a.parsed.year;
+        }
+        if (a.parsed.month !== b.parsed.month) {
+          return b.parsed.month - a.parsed.month;
+        }
+      } else if (a.parsed) {
+        return -1;
+      } else if (b.parsed) {
+        return 1;
+      }
+      return a.index - b.index;
+    })
+    .map((item) => item.post);
+};
 
 const renderAuthors = (text, highlight) => {
   const frag = document.createDocumentFragment();
@@ -99,17 +188,27 @@ const buildPubItem = (pub) => {
 const buildBlogItem = (post) => {
   const article = document.createElement("article");
   article.className = "blog-item";
+  if (post.pinned) {
+    article.classList.add("is-pinned");
+  }
 
   const title = document.createElement("h4");
   title.className = "blog-title";
   const titleLink = document.createElement("a");
-  titleLink.href = post.url || "#";
+  titleLink.href = post.id ? `post.html?id=${encodeURIComponent(post.id)}` : "#";
   titleLink.textContent = post.title || "Untitled";
   title.append(titleLink);
 
   const meta = document.createElement("div");
   meta.className = "blog-meta";
-  meta.textContent = post.date || "";
+  meta.textContent = formatMonthYear(post.date);
+  if (post.pinned) {
+    const badge = document.createElement("span");
+    badge.className = "blog-pin";
+    badge.setAttribute("aria-label", "Pinned");
+    badge.textContent = "📌";
+    meta.append(badge);
+  }
 
   const summary = document.createElement("p");
   summary.className = "blog-summary";
@@ -120,13 +219,64 @@ const buildBlogItem = (post) => {
   if (Array.isArray(post.tags)) {
     post.tags.forEach((tag) => {
       const chip = document.createElement("span");
-      chip.textContent = tag;
+      chip.textContent = `#${tag}`;
       tags.append(chip);
     });
   }
 
   article.append(title, meta, summary, tags);
   return article;
+};
+
+const renderBlogList = (listEl, posts) => {
+  listEl.innerHTML = "";
+  if (Array.isArray(posts) && posts.length) {
+    posts.forEach((post) => {
+      listEl.append(buildBlogItem(post));
+    });
+    return;
+  }
+  const message = document.createElement("p");
+  message.className = "blog-empty";
+  message.textContent = "Coming soon.";
+  listEl.append(message);
+};
+
+const buildBlogTagFilters = (filterEl, posts, tagsFromData) => {
+  const tags = Array.isArray(tagsFromData) && tagsFromData.length
+    ? tagsFromData
+    : Array.isArray(posts)
+      ? posts
+          .flatMap((post) => (Array.isArray(post.tags) ? post.tags : []))
+          .filter(Boolean)
+      : [];
+  if (!tags.length) {
+    return { selectedTag: "All", tagButtons: [] };
+  }
+
+  const uniqueTags = Array.from(new Set(tags.map((tag) => tag.trim()))).filter(Boolean);
+  const buttons = [];
+  const allButton = document.createElement("button");
+  allButton.type = "button";
+  allButton.className = "blog-filter-tag is-active";
+  allButton.dataset.tag = "All";
+  allButton.setAttribute("aria-pressed", "true");
+  allButton.textContent = "#All";
+  filterEl.append(allButton);
+  buttons.push(allButton);
+
+  uniqueTags.forEach((tag) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "blog-filter-tag";
+    button.dataset.tag = tag;
+    button.setAttribute("aria-pressed", "false");
+    button.textContent = `#${tag}`;
+    filterEl.append(button);
+    buttons.push(button);
+  });
+
+  return { selectedTag: "All", tagButtons: buttons };
 };
 
 const buildNewsItem = (item) => {
@@ -146,7 +296,8 @@ fetch(dataUrl)
   .then((data) => {
     const newsList = document.getElementById("news-list");
     if (newsList && Array.isArray(data.news)) {
-      data.news.forEach((item) => {
+      const sortedNews = sortByDateDesc(data.news);
+      sortedNews.forEach((item) => {
         newsList.append(buildNewsItem(item));
       });
     }
@@ -158,20 +309,65 @@ fetch(dataUrl)
       });
     }
 
-    const blogList = document.getElementById("blogs-list");
-    if (blogList) {
-      if (Array.isArray(data.blogs) && data.blogs.length) {
-        data.blogs.forEach((post) => {
-          blogList.append(buildBlogItem(post));
-        });
-      } else {
-        const message = document.createElement("p");
-        message.className = "blog-empty";
-        message.textContent = "Coming soon.";
-        blogList.append(message);
-      }
-    }
   })
   .catch((error) => {
     console.error("Failed to load data.json", error);
+  });
+
+fetch(blogsUrl)
+  .then((response) => response.json())
+  .then((data) => {
+    const blogList = document.getElementById("blogs-list");
+    const blogFilter = document.getElementById("blog-tag-filter");
+    if (!blogList) {
+      return;
+    }
+
+    const posts = Array.isArray(data.posts) ? data.posts : [];
+    const sortedPosts = sortByDateDesc(posts);
+    renderBlogList(blogList, sortedPosts);
+
+    if (!blogFilter) {
+      return;
+    }
+
+    const { tagButtons } = buildBlogTagFilters(
+      blogFilter,
+      sortedPosts,
+      data.blogTags,
+    );
+    if (!tagButtons.length) {
+      return;
+    }
+
+    const setActive = (activeTag) => {
+      tagButtons.forEach((button) => {
+        const isActive = button.dataset.tag === activeTag;
+        button.classList.toggle("is-active", isActive);
+        button.setAttribute("aria-pressed", String(isActive));
+      });
+    };
+
+    tagButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const tag = button.dataset.tag;
+        setActive(tag);
+        if (tag === "All") {
+          renderBlogList(blogList, sortedPosts);
+          return;
+        }
+        const filtered = sortedPosts.filter((post) => {
+          if (!Array.isArray(post.tags)) {
+            return false;
+          }
+          return post.tags.some(
+            (postTag) => postTag.toLowerCase() === tag.toLowerCase(),
+          );
+        });
+        renderBlogList(blogList, filtered);
+      });
+    });
+  })
+  .catch((error) => {
+    console.error("Failed to load blogs.json", error);
   });

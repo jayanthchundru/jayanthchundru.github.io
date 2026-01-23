@@ -1,0 +1,45 @@
+{
+  "id": "cincinnati-walk",
+  "title": "Weekend Wanders: A Slow Walk Through Cincinnati",
+  "kicker": "Off the Clock",
+  "date": "Jul 2025",
+  "readTime": "4 min read",
+  "summary": "A camera roll, a coffee map, and small observations from a quiet Saturday.",
+  "tags": [
+    "Off the Clock"
+  ],
+  "hero": null,
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "I mapped a gentle loop through the city with stops for coffee, window shopping, and a long pause on the riverfront."
+    },
+    {
+      "type": "quote",
+      "text": "The riverfront always feels like a deep breath."
+    },
+    {
+      "type": "heading",
+      "text": "Morning light and quiet streets"
+    },
+    {
+      "type": "paragraph",
+      "text": "The best moments were the smallest ones: a sunlit alley, a mural in OTR, and the way the breeze changes near the water."
+    },
+    {
+      "type": "gallery",
+      "images": [
+        {
+          "src": "images/Jay.jpeg",
+          "alt": "Replace with a city photo",
+          "caption": "Swap with your own street shot."
+        },
+        {
+          "src": "images/Jay.jpeg",
+          "alt": "Replace with a city photo",
+          "caption": "Add another image for the slider."
+        }
+      ]
+    }
+  ]
+}
