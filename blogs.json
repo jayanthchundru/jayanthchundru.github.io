@@ -9,18 +9,5 @@
     "avatar": "images/Jay.jpeg"
   },
   "posts": [
-    {
-      "id": "life-lately",
-      "file": "posts/life-lately.json",
-      "title": "Life Lately",
-      "kicker": "Life Lately",
-      "date": "Jan 2026",
-      "readTime": "∞",
-      "summary": "A running log of trips, meals, and small joys outside of work.",
-      "tags": [
-        "Life Lately"
-      ],
-      "pinned": false
-    }
   ]
 }
