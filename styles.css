@@ -190,8 +190,15 @@ html {
   border-radius: 0;
   background: transparent;
   border: none;
-  font-size: 0.85rem;
+  font-size: 0.95rem;
+  line-height: 1.1;
   border-bottom: 1px solid transparent;
+}
+
+.contact-row a.icon-link + a.icon-link::before {
+  content: "/";
+  margin: 0 1px;
+  color: var(--text-muted);
 }
 
 .contact-row a.icon-link:hover {
@@ -203,12 +210,14 @@ html {
   align-items: center;
   gap: 6px;
   white-space: nowrap;
+  vertical-align: middle;
 }
 
 .icon-link svg {
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
   fill: currentColor;
+  display: block;
 }
 
 .hero {
@@ -228,7 +237,7 @@ html {
 
 .lead h2 {
   font-family: "Fraunces", "Georgia", serif;
-  font-size: clamp(2rem, 3.6vw, 3.1rem);
+  font-size: clamp(1.75rem, 3.1vw, 2.7rem);
   margin: 0 0 14px;
 }
 
