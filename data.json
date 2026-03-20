@@ -15,14 +15,57 @@
       }
     }
   ],
+  "projects": [
+    {
+      "title": "Project One",
+      "description": "End-to-end system that turns raw text into structured insights, combining data ingestion, model inference, and a lightweight evaluation harness to track accuracy and latency over time.",
+      "status": "In Progress",
+      "code": "https://github.com/yourname/project-one",
+      "skills": ["Python", "PyTorch", "FastAPI", "ML Ops"]
+    },
+    {
+      "title": "Project Two",
+      "description": "Multimodal assistant that grounds actions in UI state, using a modular planner and tool APIs to complete tasks with predictable retries and clear safety checks.",
+      "status": "In Progress",
+      "code": "https://github.com/yourname/project-two",
+      "skills": ["JS", "React", "Node", "Agents"]
+    },
+    {
+      "title": "GPT from Scratch",
+      "description": "Efficient inference pipeline that profiles bottlenecks, applies batching and caching strategies, and delivers consistent throughput improvements on commodity GPUs.",
+      "status": "In Progress",
+      "code": "https://github.com/yourname/project-three",
+      "skills": ["Python", "PyTorch", "Tiktoken"]
+    }
+  ],
+  "resources": [
+    {
+      "title": "Vizuara: Building LLMs from Scratch",
+      "description": "Series of Lectures on Building Large Language Model(LLM) from scratch",
+      "url": "https://youtube.com/playlist?list=PLPTV0NXA_ZSgsLAr8YCgCwhPIJNNtexWu&si=eFoe2h5jwqL8QN6t"
+    },
+    {
+      "title": "Stanford CS321n: ",
+      "description": "Deep Learning for Computer Vision | 2025.",
+      "url": "https://www.youtube.com/playlist?list=PLoROMvodv4rOmsNzYBMe0gJY2XS8AQg16"
+    },
+    {
+      "title": "Take U forward : Data Structures and Algorithms",
+      "description": "Concepts and Leetcode Problem solving ",
+      "url": "https://youtu.be/0bHoB32fuj0?si=-dB7Pkfloi-Ozixe"
+    }
+  ],
   "news": [
     {
       "date": "Aug 2025",
-      "text": "Paper accepted to EMNLP 2025."
+      "text": "Paper accepted to EMNLP 2025.",
+      "links": { "EMNLP 2025": "https://aclanthology.org/2025.emnlp-main.1499/" }
+
     },
     {
       "date": "May 2025",
-      "text": "Joined Procter & Gamble (UC Digital Accelerator Program) as a Research Assistant."
+      "text": "Joined Procter & Gamble (UC Digital Accelerator Program) as a Research Assistant.",
+      "links": { "Procter & Gamble": "https://us.pg.com/" }
     },
     {
       "date": "Aug 2024",
@@ -30,15 +73,22 @@
     },
     {
       "date": "May 2023",
-      "text": "Continued at CommScope as a Software Engineer."
+      "text": "Continued at CommScope as a Software Engineer.",
+      "links": { "CommScope": "https://www.commscope.com/" }
     },
     {
       "date": "May 2023",
-      "text": "Graduated with a Silver Medal in the 2023 Bachelor's degree cohort."
+      "text": "Graduated with a Silver Medal in the 2023 Bachelor's degree cohort.",
+      "highlights": ["Silver Medal"]
     },
     {
       "date": "Jul 2022",
-      "text": "Started a software engineering internship at CommScope, Bangalore."
+      "text": "Started a software engineering internship at CommScope, Bangalore.",
+      "links": { "CommScope": "https://www.commscope.com/" }
     }
-  ]
+  ],
+  "leetcode": {
+    "profile": "https://leetcode.com/u/jayanthkrishnachundru/",
+    "image": "https://leetcard.jacoblin.cool/jayanthkrishnachundru?theme=light&border=1&radius=12"
+  }
 }

@@ -1,3 +1,47 @@
+const getStoredTheme = () => {
+  try {
+    return localStorage.getItem("theme");
+  } catch (error) {
+    return null;
+  }
+};
+
+const getPreferredTheme = () => {
+  const stored = getStoredTheme();
+  if (stored === "light" || stored === "dark") {
+    return stored;
+  }
+  if (window.matchMedia) {
+    return window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light";
+  }
+  return "light";
+};
+
+const applyTheme = (theme, toggle) => {
+  document.documentElement.setAttribute("data-theme", theme);
+  if (toggle) {
+    toggle.textContent = theme === "dark" ? "Light mode" : "Dark mode";
+    toggle.setAttribute("aria-pressed", theme === "dark" ? "true" : "false");
+  }
+};
+
+const themeToggle = document.getElementById("theme-toggle");
+applyTheme(getPreferredTheme(), themeToggle);
+if (themeToggle) {
+  themeToggle.addEventListener("click", () => {
+    const currentTheme = document.documentElement.getAttribute("data-theme");
+    const nextTheme = currentTheme === "dark" ? "light" : "dark";
+    applyTheme(nextTheme, themeToggle);
+    try {
+      localStorage.setItem("theme", nextTheme);
+    } catch (error) {
+      // Ignore storage errors and keep the UI responsive.
+    }
+  });
+}
+
 const blogsUrl = "blogs.json";
 
 const monthNames = [

@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Blog Post</title>
+    <link rel="icon" type="image/png" href="images/infinity-transparent.png?v=1" />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;600;700&family=Sora:wght@300;400;500;600;700&display=swap"
@@ -12,14 +13,19 @@
   </head>
   <body>
     <main>
-      <header class="reveal" style="--delay: 0s">
-        <nav class="back-nav">
-          <a href="blogs.html" class="icon-link" aria-label="Back to blogs">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M15.5 5 7 12l8.5 7L17 17l-6-5 6-5-1.5-2z" />
-            </svg>
-            Back to blogs
-          </a>
+      <header class="site-header reveal" style="--delay: 0s">
+        <nav class="main-nav">
+          <a href="index.html#about">About</a>
+          <a href="index.html#news">News</a>
+          <a href="index.html#publications">Publications</a>
+          <a href="projects.html">Projects</a>
+          <a href="blogs.html">Blogs</a>
+          <button
+            id="theme-toggle"
+            class="theme-toggle"
+            type="button"
+            aria-label="Toggle color theme"
+          ></button>
         </nav>
       </header>
 

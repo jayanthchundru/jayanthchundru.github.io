@@ -4,23 +4,28 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Blogs</title>
+    <link rel="icon" type="image/png" href="images/infinity-transparent.png?v=1" />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;600;700&family=Sora:wght@300;400;500;600;700&display=swap"
     />
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <body>
+  <body class="grid-bg">
     <main>
       <header class="site-header">
-        <nav class="main-nav main-nav--blog">
-          <a href="index.html" class="nav-back" aria-label="Back to main page">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M15.5 5 7 12l8.5 7L17 17l-6-5 6-5-1.5-2z" />
-            </svg>
-            Back
-          </a>
-          <span class="nav-spacer" aria-hidden="true"></span>
+        <nav class="main-nav">
+          <a href="index.html#about">About</a>
+          <a href="index.html#news">News</a>
+          <a href="index.html#publications">Publications</a>
+          <!-- <a href="projects.html">Projects</a> -->
+          <a href="blogs.html">Blogs</a>
+          <button
+            id="theme-toggle"
+            class="theme-toggle"
+            type="button"
+            aria-label="Toggle color theme"
+          ></button>
         </nav>
       </header>
 

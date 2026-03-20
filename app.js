@@ -1,3 +1,98 @@
+const getStoredTheme = () => {
+  try {
+    return localStorage.getItem("theme");
+  } catch (error) {
+    return null;
+  }
+};
+
+const scrollToHashTarget = (behavior = "auto") => {
+  const { hash } = window.location;
+  if (!hash) {
+    return;
+  }
+  const target = document.querySelector(hash);
+  if (!target) {
+    return;
+  }
+  target.scrollIntoView({ behavior, block: "start" });
+};
+
+const requestHashScroll = () => {
+  if (!window.location.hash) {
+    return;
+  }
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      scrollToHashTarget("auto");
+    });
+  });
+};
+
+const getPreferredTheme = () => {
+  const stored = getStoredTheme();
+  if (stored === "light" || stored === "dark") {
+    return stored;
+  }
+  if (window.matchMedia) {
+    return window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light";
+  }
+  return "light";
+};
+
+const applyTheme = (theme, toggle) => {
+  document.documentElement.setAttribute("data-theme", theme);
+  if (toggle) {
+    const isDark = theme === "dark";
+    const moonIcon = `
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path
+          d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"
+          fill="currentColor"
+        />
+      </svg>
+    `;
+    const sunIcon = `
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <circle cx="12" cy="12" r="4.2" fill="currentColor" />
+        <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.6">
+          <line x1="12" y1="2.6" x2="12" y2="5.1" />
+          <line x1="12" y1="18.9" x2="12" y2="21.4" />
+          <line x1="2.6" y1="12" x2="5.1" y2="12" />
+          <line x1="18.9" y1="12" x2="21.4" y2="12" />
+          <line x1="4.6" y1="4.6" x2="6.4" y2="6.4" />
+          <line x1="17.6" y1="17.6" x2="19.4" y2="19.4" />
+          <line x1="17.6" y1="6.4" x2="19.4" y2="4.6" />
+          <line x1="4.6" y1="19.4" x2="6.4" y2="17.6" />
+        </g>
+      </svg>
+    `;
+    toggle.innerHTML = isDark ? sunIcon : moonIcon;
+    toggle.setAttribute("aria-pressed", isDark ? "true" : "false");
+    toggle.setAttribute(
+      "aria-label",
+      isDark ? "Switch to light mode" : "Switch to dark mode",
+    );
+  }
+};
+
+const themeToggle = document.getElementById("theme-toggle");
+applyTheme(getPreferredTheme(), themeToggle);
+if (themeToggle) {
+  themeToggle.addEventListener("click", () => {
+    const currentTheme = document.documentElement.getAttribute("data-theme");
+    const nextTheme = currentTheme === "dark" ? "light" : "dark";
+    applyTheme(nextTheme, themeToggle);
+    try {
+      localStorage.setItem("theme", nextTheme);
+    } catch (error) {
+      // Ignore storage errors and keep the UI responsive.
+    }
+  });
+}
+
 const today = new Date();
 const options = { year: "numeric", month: "long" };
 const label = today.toLocaleDateString("en-US", options);
@@ -163,7 +258,10 @@ const buildPubItem = (pub) => {
 
   const abstract = document.createElement("p");
   abstract.className = "pub-abstract";
-  abstract.textContent = pub.abstract || "";
+  const abstractText = pub.abstract || "";
+  const abstractTextNode = document.createTextNode(abstractText);
+  abstract.append(abstractTextNode);
+
 
   const links = document.createElement("div");
   links.className = "pub-links";
@@ -279,6 +377,38 @@ const buildBlogTagFilters = (filterEl, posts, tagsFromData) => {
   return { selectedTag: "All", tagButtons: buttons };
 };
 
+const renderNewsText = (text, highlights, links) => {
+  const frag = document.createDocumentFragment();
+  const highlightSet = new Set(Array.isArray(highlights) ? highlights : []);
+  const linksMap = (links && typeof links === "object") ? links : {};
+  const allKeys = [...Object.keys(linksMap), ...highlightSet].filter(Boolean);
+  if (!allKeys.length) {
+    frag.append(document.createTextNode(text));
+    return frag;
+  }
+  const pattern = allKeys.map((h) => h.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|");
+  const regex = new RegExp(`(${pattern})`, "g");
+  const parts = text.split(regex);
+  parts.forEach((part) => {
+    if (linksMap[part]) {
+      const a = document.createElement("a");
+      a.href = linksMap[part];
+      a.textContent = part;
+      a.target = "_blank";
+      a.rel = "noopener noreferrer";
+      a.className = "news-link";
+      frag.append(a);
+    } else if (highlightSet.has(part)) {
+      const strong = document.createElement("strong");
+      strong.textContent = part;
+      frag.append(strong);
+    } else if (part) {
+      frag.append(document.createTextNode(part));
+    }
+  });
+  return frag;
+};
+
 const buildNewsItem = (item) => {
   const li = document.createElement("li");
   const date = document.createElement("span");
@@ -286,8 +416,96 @@ const buildNewsItem = (item) => {
   date.textContent = item.date || "";
   const text = document.createElement("span");
   text.className = "news-text";
-  text.textContent = item.text || "";
+  text.append(renderNewsText(item.text || "", item.highlights, item.links));
   li.append(date, text);
+  return li;
+};
+
+const buildProjectItem = (project) => {
+  const article = document.createElement("article");
+  article.className = "card project-card";
+
+  const body = document.createElement("div");
+  body.className = "project-body";
+
+  const title = document.createElement("h4");
+  title.textContent = project.title || "Untitled Project";
+
+  const description = document.createElement("p");
+  description.textContent = project.description || "";
+
+  const tags = document.createElement("div");
+  tags.className = "project-tags";
+  if (Array.isArray(project.skills)) {
+    project.skills.filter(Boolean).forEach((skill) => {
+      const tag = document.createElement("span");
+      tag.textContent = skill;
+      tags.append(tag);
+    });
+  }
+
+  const meta = document.createElement("div");
+  meta.className = "project-meta";
+
+  if (project.status) {
+    const status = document.createElement("span");
+    status.textContent = project.status;
+    meta.append(status);
+  }
+
+  if (project.code) {
+    const link = document.createElement("a");
+    link.href = project.code;
+    link.className = "icon-link project-link";
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    link.innerHTML = `
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path
+          d="M12 2C6.5 2 2 6.5 2 12c0 4.4 2.9 8.1 6.9 9.4.5.1.7-.2.7-.5v-1.8c-2.8.6-3.4-1.2-3.4-1.2-.4-1-1-1.3-1-1.3-.8-.5.1-.5.1-.5.9.1 1.4.9 1.4.9.8 1.4 2.2 1 2.7.8.1-.6.3-1 .6-1.2-2.2-.2-4.5-1.1-4.5-5 0-1.1.4-2 1-2.7-.1-.2-.4-1.2.1-2.6 0 0 .8-.3 2.7 1a9.3 9.3 0 0 1 4.9 0c1.9-1.3 2.7-1 2.7-1 .5 1.4.2 2.4.1 2.6.6.7 1 1.6 1 2.7 0 3.9-2.3 4.8-4.5 5 .3.3.7.8.7 1.6v2.4c0 .3.2.6.7.5A10 10 0 0 0 22 12c0-5.5-4.5-10-10-10z"
+        />
+      </svg>
+      CODE
+    `;
+    meta.append(link);
+  }
+
+  body.append(title, description);
+  if (tags.childElementCount) {
+    body.append(tags);
+  }
+  if (meta.childElementCount) {
+    body.append(meta);
+  }
+  article.append(body);
+  return article;
+};
+
+const buildResourceItem = (resource, index) => {
+  const li = document.createElement("li");
+  li.className = "resources-item";
+
+  const number = document.createElement("span");
+  number.className = "resources-number";
+  number.textContent = `[${index + 1}]`;
+
+  const text = document.createElement("p");
+  text.className = "resources-text";
+
+  const title = document.createElement("a");
+  title.className = "resources-title";
+  title.href = resource.url || "#";
+  title.textContent = resource.title || "Untitled resource";
+  title.target = "_blank";
+  title.rel = "noopener noreferrer";
+
+  text.append(number, document.createTextNode(" "), title);
+  if (resource.description) {
+    text.append(document.createTextNode(` ${resource.description}`));
+  }
+
+  li.append(text);
+
   return li;
 };
 
@@ -297,6 +515,9 @@ fetch(dataUrl)
     const newsList = document.getElementById("news-list");
     if (newsList && Array.isArray(data.news)) {
       const sortedNews = sortByDateDesc(data.news);
+      if (sortedNews.length > 10) {
+        newsList.classList.add("is-scroll");
+      }
       sortedNews.forEach((item) => {
         newsList.append(buildNewsItem(item));
       });
@@ -309,6 +530,38 @@ fetch(dataUrl)
       });
     }
 
+    const projectList = document.getElementById("projects-list");
+    if (projectList && Array.isArray(data.projects)) {
+      data.projects.forEach((project) => {
+        projectList.append(buildProjectItem(project));
+      });
+    }
+
+    const resourcesList = document.getElementById("resources-list");
+    if (resourcesList && Array.isArray(data.resources)) {
+      data.resources.forEach((resource, index) => {
+        resourcesList.append(buildResourceItem(resource, index));
+      });
+    }
+
+    const leetcodeLink = document.getElementById("leetcode-card-link");
+    const leetcodeImage = document.getElementById("leetcode-card-image");
+    if (leetcodeImage) {
+      if (data.leetcode && data.leetcode.image) {
+        leetcodeImage.src = data.leetcode.image;
+      } else {
+        leetcodeImage.remove();
+      }
+    }
+    if (leetcodeLink) {
+      if (data.leetcode && data.leetcode.profile) {
+        leetcodeLink.href = data.leetcode.profile;
+      } else {
+        leetcodeLink.remove();
+      }
+    }
+
+    requestHashScroll();
   })
   .catch((error) => {
     console.error("Failed to load data.json", error);
