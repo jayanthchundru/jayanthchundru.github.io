@@ -509,6 +509,28 @@ const buildResourceItem = (resource, index) => {
   return li;
 };
 
+const hamburgerBtn = document.getElementById("hamburger");
+const mainNavEl = document.querySelector(".main-nav");
+if (hamburgerBtn && mainNavEl) {
+  hamburgerBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    const isOpen = mainNavEl.classList.toggle("nav-open");
+    hamburgerBtn.setAttribute("aria-expanded", String(isOpen));
+  });
+  mainNavEl.querySelectorAll(".nav-links a").forEach((link) => {
+    link.addEventListener("click", () => {
+      mainNavEl.classList.remove("nav-open");
+      hamburgerBtn.setAttribute("aria-expanded", "false");
+    });
+  });
+  document.addEventListener("click", (e) => {
+    if (!mainNavEl.contains(e.target)) {
+      mainNavEl.classList.remove("nav-open");
+      hamburgerBtn.setAttribute("aria-expanded", "false");
+    }
+  });
+}
+
 fetch(dataUrl)
   .then((response) => response.json())
   .then((data) => {
