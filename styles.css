@@ -761,6 +761,22 @@ html {
   text-align: justify;
 }
 
+.pub-abstract-wrap {
+  position: relative;
+}
+
+.pub-abstract-toggle {
+  display: none;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-size: 0.82rem;
+  color: var(--accent);
+  font-family: inherit;
+  line-height: 1.6;
+}
+
 
 .pub-links a {
   color: var(--accent-strong);
@@ -1498,6 +1514,27 @@ html {
 
   .pub-abstract {
     font-size: 0.85rem;
+    text-align: left;
+  }
+
+  .pub-abstract-wrap:not(.is-expanded) .pub-abstract {
+    max-height: 6.4em;
+    overflow: hidden;
+  }
+
+  .pub-abstract-toggle {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: var(--bg);
+    padding-left: 6px;
+  }
+
+  .pub-abstract-wrap.is-expanded .pub-abstract-toggle {
+    position: static;
+    padding-left: 0;
+    margin-top: 4px;
   }
 
   .section-title {
@@ -1648,10 +1685,6 @@ html {
   .pub-venue,
   .pub-links a {
     font-size: 0.85rem;
-  }
-
-  .pub-abstract-toggle {
-    display: inline;
   }
 
   .project-card {

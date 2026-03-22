@@ -256,12 +256,24 @@ const buildPubItem = (pub) => {
   const venueText = [pub.venue, pub.year].filter(Boolean).join(" ");
   venue.textContent = venueText;
 
+  const abstractWrap = document.createElement("div");
+  abstractWrap.className = "pub-abstract-wrap";
+
   const abstract = document.createElement("p");
   abstract.className = "pub-abstract";
   const abstractText = pub.abstract || "";
-  const abstractTextNode = document.createTextNode(abstractText);
-  abstract.append(abstractTextNode);
+  abstract.append(document.createTextNode(abstractText));
 
+  const abstractToggle = document.createElement("button");
+  abstractToggle.className = "pub-abstract-toggle";
+  abstractToggle.type = "button";
+  abstractToggle.textContent = "...read more";
+  abstractToggle.addEventListener("click", () => {
+    const isExpanded = abstractWrap.classList.toggle("is-expanded");
+    abstractToggle.textContent = isExpanded ? "show less" : "...read more";
+  });
+
+  abstractWrap.append(abstract, abstractToggle);
 
   const links = document.createElement("div");
   links.className = "pub-links";
@@ -278,7 +290,7 @@ const buildPubItem = (pub) => {
     });
   }
 
-  content.append(title, authors, venue, links, abstract);
+  content.append(title, authors, venue, links, abstractWrap);
   article.append(thumb, content);
   return article;
 };
