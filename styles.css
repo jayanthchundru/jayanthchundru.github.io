@@ -759,6 +759,7 @@ html {
   font-size: clamp(0.85rem, 0.4vw + 0.75rem, 0.95rem);
   line-height: 1.6;
   text-align: justify;
+  text-align: justify;
 }
 
 .pub-abstract-wrap {
@@ -1514,7 +1515,6 @@ html {
 
   .pub-abstract {
     font-size: 0.85rem;
-    text-align: left;
   }
 
   .pub-abstract-wrap:not(.is-expanded) .pub-abstract {
@@ -1667,18 +1667,15 @@ html {
     width: 92%;
     max-width: 600px;
     margin: 0 auto;
-    grid-template-columns: 140px 1fr;
-    gap: 16px;
+    grid-template-columns: 1fr;
+    gap: 12px;
     padding: 16px;
   }
 
   .pub-thumb {
-    min-height: 120px;
+    width: 100%;
+    min-height: 160px;
     padding: 10px;
-  }
-
-  .pub-title {
-    font-size: 0.95rem;
   }
 
   .pub-authors,
@@ -1694,13 +1691,14 @@ html {
 
 @media (max-width: 520px) {
   .pub-item {
-    grid-template-columns: 120px 1fr;
-    gap: 12px;
+    grid-template-columns: 1fr;
+    gap: 10px;
     padding: 14px;
   }
 
   .pub-thumb {
-    min-height: 110px;
+    width: 100%;
+    min-height: 150px;
   }
 
 }
