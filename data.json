@@ -12,7 +12,8 @@
       "links": {
         "paper": "https://aclanthology.org/2025.emnlp-main.1499/",
         "code": "https://github.com/cincynlp/FrameID"
-      }
+      },
+      "tags": ["computational semantics", "LLMs"]
     }
   ],
   "projects": [
@@ -56,6 +57,11 @@
     }
   ],
   "news": [
+        {
+      "date": "Apr 2026",
+      "text": "Received the Best Master's Student Award 2026 from the Computer Science Department.",
+      "highlights" : ["Master's Student Award"]
+    },
     {
       "date": "Aug 2025",
       "text": "Paper accepted to EMNLP 2025.",

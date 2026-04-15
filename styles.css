@@ -792,6 +792,23 @@ html {
   color: var(--accent);
 }
 
+.pub-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 6px 0 10px;
+}
+
+.pub-tags span {
+  border: 1px solid var(--rule);
+  padding: 3px 8px;
+  font-size: 0.68rem;
+  font-family: "Sora", "Avenir", "Helvetica", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
 .blog-list {
   margin-top: 20px;
   display: grid;

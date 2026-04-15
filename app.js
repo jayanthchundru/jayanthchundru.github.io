@@ -290,7 +290,17 @@ const buildPubItem = (pub) => {
     });
   }
 
-  content.append(title, authors, venue, links, abstractWrap);
+  const pubTags = document.createElement("div");
+  pubTags.className = "pub-tags";
+  if (Array.isArray(pub.tags)) {
+    pub.tags.forEach((tag) => {
+      const chip = document.createElement("span");
+      chip.textContent = `#${tag}`;
+      pubTags.append(chip);
+    });
+  }
+
+  content.append(title, authors, venue, links, pubTags, abstractWrap);
   article.append(thumb, content);
   return article;
 };
