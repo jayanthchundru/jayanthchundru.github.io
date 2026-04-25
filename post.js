@@ -22,8 +22,30 @@ const getPreferredTheme = () => {
 const applyTheme = (theme, toggle) => {
   document.documentElement.setAttribute("data-theme", theme);
   if (toggle) {
-    toggle.textContent = theme === "dark" ? "Light mode" : "Dark mode";
-    toggle.setAttribute("aria-pressed", theme === "dark" ? "true" : "false");
+    const isDark = theme === "dark";
+    const moonIcon = `
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="currentColor" />
+      </svg>
+    `;
+    const sunIcon = `
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <circle cx="12" cy="12" r="4.2" fill="currentColor" />
+        <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.6">
+          <line x1="12" y1="2.6" x2="12" y2="5.1" />
+          <line x1="12" y1="18.9" x2="12" y2="21.4" />
+          <line x1="2.6" y1="12" x2="5.1" y2="12" />
+          <line x1="18.9" y1="12" x2="21.4" y2="12" />
+          <line x1="4.6" y1="4.6" x2="6.4" y2="6.4" />
+          <line x1="17.6" y1="17.6" x2="19.4" y2="19.4" />
+          <line x1="17.6" y1="6.4" x2="19.4" y2="4.6" />
+          <line x1="4.6" y1="19.4" x2="6.4" y2="17.6" />
+        </g>
+      </svg>
+    `;
+    toggle.innerHTML = isDark ? sunIcon : moonIcon;
+    toggle.setAttribute("aria-pressed", isDark ? "true" : "false");
+    toggle.setAttribute("aria-label", isDark ? "Switch to light mode" : "Switch to dark mode");
   }
 };
 
@@ -513,6 +535,28 @@ const renderNotFound = () => {
     contentEl.innerHTML = "<p>We could not find that blog post.</p>";
   }
 };
+
+const hamburgerBtn = document.getElementById("hamburger");
+const mainNavEl = document.querySelector(".main-nav");
+if (hamburgerBtn && mainNavEl) {
+  hamburgerBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    const isOpen = mainNavEl.classList.toggle("nav-open");
+    hamburgerBtn.setAttribute("aria-expanded", String(isOpen));
+  });
+  mainNavEl.querySelectorAll(".nav-links a").forEach((link) => {
+    link.addEventListener("click", () => {
+      mainNavEl.classList.remove("nav-open");
+      hamburgerBtn.setAttribute("aria-expanded", "false");
+    });
+  });
+  document.addEventListener("click", (e) => {
+    if (!mainNavEl.contains(e.target)) {
+      mainNavEl.classList.remove("nav-open");
+      hamburgerBtn.setAttribute("aria-expanded", "false");
+    }
+  });
+}
 
 const params = new URLSearchParams(window.location.search);
 const postId = params.get("id");
