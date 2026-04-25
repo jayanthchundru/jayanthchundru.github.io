@@ -3,7 +3,7 @@
   --nav-height: 64px;
   --bg: #ffffff;
   --surface: #ffffff;
-  --ink: #0f0f0e;
+  --ink: #111111;
   --muted: #6b7280;
   --accent: #2563eb;
   --accent-strong: #1d4ed8;
@@ -14,15 +14,15 @@
 }
 
 [data-theme="dark"] {
-  --bg: #0c0e14;
-  --surface: #131620;
-  --ink: #f0f2f8;
-  --muted: #7d8698;
-  --accent: #60a5fa;
-  --accent-strong: #93c5fd;
-  --accent-soft: #162035;
-  --rule: #1c2030;
-  --shadow: rgba(0, 0, 0, 0.5);
+  --bg: #0f1116;
+  --surface: #151821;
+  --ink: #f4f6fb;
+  --muted: #a5adbb;
+  --accent: #7aa2f7;
+  --accent-strong: #5f86e8;
+  --accent-soft: #1b2333;
+  --rule: #2a2f3a;
+  --shadow: rgba(0, 0, 0, 0.45);
   --shadow-md: rgba(0, 0, 0, 0.7);
 }
 
@@ -358,14 +358,24 @@ html {
 }
 
 .contact-row a.icon-link {
-  padding: 6px 14px;
+  padding: 8px 8px;
   border-radius: 999px;
   border: 1px solid var(--rule);
   background: var(--surface);
   font-size: 0.88rem;
-  line-height: 1.1;
+  line-height: 1;
   box-shadow: 0 1px 3px var(--shadow);
+  justify-content: center;
   transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+}
+
+.contact-row a.icon-link[aria-label="CV"] {
+  padding: 8px 14px;
+}
+
+.contact-row a[href*="github"] svg,
+.contact-row a[href*="scholar.google"] svg {
+  transform: translateX(-1px);
 }
 
 .contact-row a.icon-link + a.icon-link::before {
@@ -650,13 +660,15 @@ html {
   display: flex;
   gap: 14px;
   padding: 8px 10px;
-  border-radius: 8px;
+  border-radius: 6px;
   margin: 0 -10px;
-  transition: background 0.15s ease;
+  border-left: 2px solid transparent;
+  transition: background 0.15s ease, border-color 0.15s ease;
 }
 
 .news-list li:hover {
   background: var(--accent-soft);
+  border-left-color: var(--accent);
 }
 
 
