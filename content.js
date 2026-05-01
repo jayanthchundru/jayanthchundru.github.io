@@ -51,7 +51,7 @@ export const introSegments = [
 ];
 
 export const contactLinks = [
-	{ label: "chundrja@mail.uc.edu", href: "mailto:chundrja@mail.uc.edu" },
+	{ label: "Email", href: "mailto:chundrja@mail.uc.edu" },
 	{ label: "LinkedIn", href: "https://www.linkedin.com/in/jayanthchundru/" },
 	{
 		label: "Google Scholar",
