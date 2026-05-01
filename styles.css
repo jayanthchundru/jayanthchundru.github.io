@@ -12,7 +12,7 @@
 }
 
 html {
-	font-size: clamp(11px, 2.22vw, 16px);
+	font-size: clamp(13px, 2.2vw, 16px);
 }
 
 body {
@@ -27,13 +27,6 @@ main {
 	max-width: 45rem;
 	margin: 0 auto;
 	padding: 2.5rem 1.25rem 4.5rem;
-}
-
-@media (pointer: coarse) {
-	main {
-		padding-left: 0;
-		padding-right: 0;
-	}
 }
 
 header,
