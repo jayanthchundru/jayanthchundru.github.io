@@ -25,6 +25,13 @@ main {
 	padding: 40px 20px 72px;
 }
 
+@media (pointer: coarse) {
+	main {
+		padding-left: 0;
+		padding-right: 0;
+	}
+}
+
 header,
 section,
 footer {
