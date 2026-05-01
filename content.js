@@ -41,7 +41,7 @@ export const introSegments = [
 	{
 		type: "link",
 		label: "SRMIST Ramapuram",
-		href: "https://srmrmp.edu.in/academics/department-of-computer-science-and-engineering/",
+		href: "https://srmrmp.edu.in/",
 	},
 	{
 		type: "text",
