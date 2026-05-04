@@ -69,11 +69,28 @@ const buildLocationBadge = () => {
 	return badge;
 };
 
+const buildNavRow = (items) => {
+	const nav = createEl("nav", "nav-row");
+	items.forEach((item) => {
+		const link = createEl("a", "", { href: item.href });
+		link.textContent = item.label;
+		nav.append(link);
+	});
+	return nav;
+};
+
 const buildHeader = () => {
 	const header = document.createElement("header");
 	const title = document.createElement("h1");
 	title.textContent = profile.name;
 	header.append(title);
+	// header.append(
+	// 	buildNavRow([
+	// 		{ label: "Research", href: "#publications" },
+	// 		{ label: "Projects", href: "projects/" },
+	// 		{ label: "Blogs", href: "blogs/" },
+	// 	])
+	// );
 	return header;
 };
 
@@ -208,7 +225,7 @@ const buildPublication = (publication) => {
 };
 
 const buildPublicationSection = () => {
-	const section = createEl("section", "list-block");
+	const section = createEl("section", "list-block", { id: "publications" });
 	const title = createEl("div", "section-title");
 	title.textContent = "Publications";
 	const list = createEl("div", "pub-list");
@@ -219,22 +236,17 @@ const buildPublicationSection = () => {
 	return section;
 };
 
-const buildFooter = () => {
-	const footer = document.createElement("footer");
-	const note = createEl("p", "byline");
-	note.append("Reach me at ");
-	const mail = createEl("a", "", { href: "mailto:chundrja@mail.uc.edu" });
-	mail.textContent = "chundrja@mail.uc.edu";
-	note.append(mail, " or connect on ");
-	const linkedIn = createEl("a", "", {
-		href: "https://www.linkedin.com/in/jayanthchundru/",
+const buildCreditLine = () => {
+	const credit = createEl("p", "credit-line");
+	credit.append("Template inspired by ");
+	const link = createEl("a", "", {
+		href: "https://jonbarron.info/",
 		target: "_blank",
 		rel: "noopener noreferrer",
 	});
-	linkedIn.textContent = "LinkedIn";
-	note.append(linkedIn, ".");
-	footer.append(note);
-	return footer;
+	link.textContent = "Jason Baron";
+	credit.append(link, ", with my own tweaks.");
+	return credit;
 };
 
 const renderPortfolio = () => {
@@ -254,7 +266,7 @@ const renderPortfolio = () => {
 		buildContactLine(),
 		buildNewsSection(),
 		buildPublicationSection(),
-		buildFooter()
+		buildCreditLine()
 	);
 	main.append(...children);
 	mount.replaceChildren(main);

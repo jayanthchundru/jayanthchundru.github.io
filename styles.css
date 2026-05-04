@@ -200,6 +200,13 @@ a:hover {
 	font-size: 0.95rem;
 }
 
+.credit-line {
+	color: var(--muted);
+	font-size: 0.85rem;
+	margin-top: 32px;
+	text-align: right;
+}
+
 .list-block + .list-block {
 	margin-top: 26px;
 	padding-top: 2px;
@@ -386,6 +393,32 @@ a:hover {
 
 .pub-links a + a {
 	margin-left: 12px;
+}
+
+.nav-row {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px 20px;
+	margin: 0 0 18px;
+	font-size: 1rem;
+}
+
+.nav-row a {
+	color: var(--accent);
+}
+
+.nav-row a:hover {
+	text-decoration: underline;
+}
+
+.project-item {
+	padding: 8px 0;
+}
+
+.project-item + .project-item {
+	border-top: 1px solid var(--rule);
+	padding-top: 14px;
+	margin-top: 6px;
 }
 
 .pub-links-inline {

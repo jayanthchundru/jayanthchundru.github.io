@@ -147,3 +147,52 @@ export const publications = [
 			"We investigate whether large language models encode latent knowledge of frame semantics, focusing on frame identification, a core challenge in frame semantic parsing that involves selecting the appropriate semantic frame for a target word in context. Using the FrameNet lexical resource, we evaluate models under prompt-based inference and observe that they can perform frame identification effectively even without explicit supervision. To assess the impact of task-specific training, we fine-tune the model on FrameNet data, which substantially improves in-domain accuracy while generalizing well to out-of-domain benchmarks. Further analysis shows that the models can generate semantically coherent frame definitions, highlighting the model's internalized understanding of frame semantics.",
 	},
 ];
+
+export const projects = [
+	{
+		title: "specgen",
+		url: "https://github.com/jayanthchundru/specgen",
+		description:
+			"Minimal implementation of speculative decoding for HuggingFace transformer models. A small draft model proposes tokens that a larger target model verifies in parallel, yielding ~2.4x throughput on a single RTX 4090 with no quality drop.",
+		tags: ["PyTorch", "CUDA", "Inference"],
+		links: [
+			{ label: "[code]", href: "https://github.com/jayanthchundru/specgen" },
+			{ label: "[notes]", href: "https://github.com/jayanthchundru/specgen#readme" },
+		],
+	},
+	{
+		title: "localrag",
+		url: "https://github.com/jayanthchundru/localrag",
+		description:
+			"Local-first retrieval-augmented chat over your markdown notes. Indexes Obsidian vaults with sentence-transformers and ChromaDB, then answers from a quantized Llama-3-8B running through llama.cpp - no API keys, no network calls.",
+		tags: ["Llama.cpp", "RAG", "Embeddings"],
+		links: [{ label: "[code]", href: "https://github.com/jayanthchundru/localrag" }],
+	},
+	{
+		title: "vision-cook",
+		url: "https://github.com/jayanthchundru/vision-cook",
+		description:
+			"Snap a photo of whatever's in your fridge and get a recipe back. Grounds ingredients with CLIP, then prompts GPT-4o with the parsed list and a target cuisine. Tiny Streamlit UI for quick iteration.",
+		tags: ["Multimodal", "CLIP", "OpenAI"],
+		links: [
+			{ label: "[code]", href: "https://github.com/jayanthchundru/vision-cook" },
+			{ label: "[demo]", href: "https://vision-cook.streamlit.app/" },
+		],
+	},
+	{
+		title: "prompt-arena",
+		url: "https://github.com/jayanthchundru/prompt-arena",
+		description:
+			"Lightweight A/B testing framework for LLM prompts. Runs prompt variants over a YAML-defined test set, judges outputs pairwise with a stronger model, and reports win rates with bootstrapped confidence intervals.",
+		tags: ["Evaluation", "LLMs", "Python"],
+		links: [{ label: "[code]", href: "https://github.com/jayanthchundru/prompt-arena" }],
+	},
+	{
+		title: "whisper-meet",
+		url: "https://github.com/jayanthchundru/whisper-meet",
+		description:
+			"Real-time meeting transcription with speaker diarization and rolling LLM summaries. Streams audio through whisper.cpp and pyannote on-device, then renders the transcript and live summary in a small React panel.",
+		tags: ["Whisper", "Diarization", "Agents"],
+		links: [{ label: "[code]", href: "https://github.com/jayanthchundru/whisper-meet" }],
+	},
+];
