@@ -236,19 +236,6 @@ const buildPublicationSection = () => {
 	return section;
 };
 
-const buildCreditLine = () => {
-	const credit = createEl("p", "credit-line");
-	credit.append("Template inspired by ");
-	const link = createEl("a", "", {
-		href: "https://jonbarron.info/",
-		target: "_blank",
-		rel: "noopener noreferrer",
-	});
-	link.textContent = "Jason Baron";
-	credit.append(link, ", with my own tweaks.");
-	return credit;
-};
-
 const renderPortfolio = () => {
 	const mount = document.getElementById("app");
 	if (!mount) {
@@ -265,8 +252,7 @@ const renderPortfolio = () => {
 		buildIntro(),
 		buildContactLine(),
 		buildNewsSection(),
-		buildPublicationSection(),
-		buildCreditLine()
+		buildPublicationSection()
 	);
 	main.append(...children);
 	mount.replaceChildren(main);

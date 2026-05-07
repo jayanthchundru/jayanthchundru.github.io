@@ -200,13 +200,6 @@ a:hover {
 	font-size: 0.95rem;
 }
 
-.credit-line {
-	color: var(--muted);
-	font-size: 0.85rem;
-	margin-top: 32px;
-	text-align: right;
-}
-
 .list-block + .list-block {
 	margin-top: 26px;
 	padding-top: 2px;
