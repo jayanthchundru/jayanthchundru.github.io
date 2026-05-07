@@ -92,9 +92,9 @@ export const newsItems = [
 	{
 		date: "May 2025",
 		segments: [
-			{ type: "text", value: "Joined " },
-			{ type: "link", label: "Procter & Gamble", href: "https://us.pg.com/", className: "news-link" },
-			{ type: "text", value: " (UC Digital Accelerator Program) as a Research Assistant." },
+			{ type: "text", value: "Joined UC Digital Accelerator Program " },
+			{ type: "link", label: "(Procter & Gamble)", href: "https://us.pg.com/", className: "news-link" },
+			{ type: "text", value: "  as a Research Assistant." },
 		],
 	},
 	{
