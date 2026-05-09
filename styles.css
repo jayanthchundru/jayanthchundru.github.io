@@ -158,6 +158,7 @@ h1 {
 	margin-bottom: 8px;
 	font-size: 0.92rem;
 	color: var(--muted);
+	white-space: nowrap;
 }
 
 .location-below svg {
@@ -426,14 +427,14 @@ a:hover {
 	}
 
 	h1 {
-		font-size: clamp(2rem, 12vw, 2.7rem);
-		line-height: 1.05;
-		white-space: normal;
+		font-size: clamp(1.7rem, 7vw, 2rem);
+		line-height: 1.1;
+		white-space: nowrap;
 	}
 
 	.photo-column {
 		float: left;
-		width: min(7.5rem, 34vw);
+		width: min(9.25rem, 42vw);
 		margin: 0 1rem 0.75rem 0;
 	}
 
@@ -456,7 +457,7 @@ a:hover {
 
 @media (max-width: 420px) {
 	.photo-column {
-		width: min(6.75rem, 36vw);
+		width: min(9rem, 42vw);
 		margin-right: 0.875rem;
 	}
 }
