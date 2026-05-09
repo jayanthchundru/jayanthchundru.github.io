@@ -36,11 +36,6 @@ main {
 	margin: 0 auto;
 	padding: 2.5rem 1.25rem 4.5rem;
 	background-color: var(--paper);
-	background-image:
-		linear-gradient(var(--grid-line) 1px, transparent 1px),
-		linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-	background-size: var(--grid-size) var(--grid-size);
-	background-position: top left;
 	border: 1px solid var(--grid-line);
 }
 
