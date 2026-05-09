@@ -8,6 +8,7 @@
 	--accent: #1a3a6e;
 	--rule: #e8e6e0;
 	--grid-line: rgba(0, 0, 0, 0.04);
+	--grid-size: 30px;
 	--paper-shadow: 0 30px 60px rgba(0, 0, 0, 0.08);
 	--paper-inset: clamp(1rem, 3vw, 2rem);
 	--page-gutter: clamp(1rem, 4vw, 2.5rem);
@@ -38,7 +39,7 @@ main {
 	background-image:
 		linear-gradient(var(--grid-line) 1px, transparent 1px),
 		linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-	background-size: 30px 30px;
+	background-size: var(--grid-size) var(--grid-size);
 	background-position: top left;
 	border: 1px solid var(--grid-line);
 }
@@ -66,15 +67,16 @@ header .nav-row {
 
 .photo-column {
 	float: left;
-	width: 11.875rem;
-	margin: 0 1.375rem 0.75rem 0;
+	width: min(9.5rem, 34vw);
+	margin: 0 1.25rem 0.75rem 0;
 	shape-outside: margin-box;
 }
 
 .profile-photo {
 	display: block;
-	width: 12.5rem;
-	height: 12.5rem;
+	width: 100%;
+	height: auto;
+	aspect-ratio: 1;
 	object-fit: cover;
 	background: #fff;
 }
@@ -84,7 +86,7 @@ header .nav-row {
 }
 
 footer {
-	clear: left;
+	clear: both;
 }
 
 h1,
@@ -97,10 +99,6 @@ p {
 p,
 .news-text,
 .pub-abstract {
-	text-align: justify;
-}
-
-.news-text {
 	text-align: left;
 }
 
@@ -409,12 +407,55 @@ a:hover {
 }
 
 @media (max-width: 640px) {
+	:root {
+		--grid-size: 34px;
+		--page-gutter: 0.75rem;
+		--paper-inset: 0.75rem;
+	}
+
+	main {
+		padding: 1.75rem 1rem 3rem;
+		overflow: hidden;
+	}
+
+	h1 {
+		font-size: clamp(2rem, 12vw, 2.7rem);
+		line-height: 1.05;
+		white-space: normal;
+	}
+
+	.photo-column {
+		float: left;
+		width: min(7.5rem, 34vw);
+		margin: 0 1rem 0.75rem 0;
+	}
+
+	.profile-photo {
+		width: 100%;
+	}
+
+	p,
+	.pub-abstract {
+		text-align: left;
+	}
+
+	.intro-link {
+		white-space: normal;
+	}
+
 	.pub-item {
 		grid-template-columns: 1fr;
 	}
 
 	.pub-thumb {
 		display: none;
+	}
+}
+
+@media (max-width: 420px) {
+	.photo-column {
+		width: min(6.75rem, 36vw);
+		margin-right: 0.875rem;
 	}
 }
 
