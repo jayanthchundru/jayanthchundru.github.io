@@ -61,6 +61,22 @@ export const contactLinks = [
 ];
 
 export const newsItems = [
+		{
+		date: "Apr 2026",
+		segments: [
+			{ type: "text", value: "Got Admission in " },
+			{
+				type: "link",
+				label: "Machine Learning Summer School 2026 ",
+				href: "https://cfe.columbia.edu/content/mlss2",
+				className: "news-link",
+			},
+			{ type: "text", value: " NYC at" },
+			{type : "strong", value: " Columbia University"},
+			{ type: "text", value: "." },
+		],
+	},
+
 	{
 		date: "Apr 2026",
 		segments: [
@@ -150,13 +166,13 @@ export const publications = [
 
 export const projects = [
 	{
-		title: "specgen",
-		url: "https://github.com/jayanthchundru/specgen",
+		title: "Mini-GPT",
+		url: "https://github.com/jayanthchundru/GPT-from-scratch",
 		description:
 			"Minimal implementation of speculative decoding for HuggingFace transformer models. A small draft model proposes tokens that a larger target model verifies in parallel, yielding ~2.4x throughput on a single RTX 4090 with no quality drop.",
-		tags: ["PyTorch", "CUDA", "Inference"],
+		tags: ["PyTorch", "Numpy","Transformers", "Inference"],
 		links: [
-			{ label: "[code]", href: "https://github.com/jayanthchundru/specgen" },
+			{ label: "[code]", href: "https://github.com/jayanthchundru/GPT-from-scratch" },
 			{ label: "[notes]", href: "https://github.com/jayanthchundru/specgen#readme" },
 		],
 	},

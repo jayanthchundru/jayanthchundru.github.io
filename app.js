@@ -84,13 +84,6 @@ const buildHeader = () => {
 	const title = document.createElement("h1");
 	title.textContent = profile.name;
 	header.append(title);
-	// header.append(
-	// 	buildNavRow([
-	// 		{ label: "Research", href: "#publications" },
-	// 		{ label: "Projects", href: "projects/" },
-	// 		{ label: "Blogs", href: "blogs/" },
-	// 	])
-	// );
 	return header;
 };
 
