@@ -99,6 +99,13 @@ p {
 p,
 .news-text,
 .pub-abstract {
+	text-align: justify;
+	text-justify: inter-word;
+	hyphens: auto;
+	overflow-wrap: anywhere;
+}
+
+.news-text {
 	text-align: left;
 }
 
@@ -432,11 +439,6 @@ a:hover {
 
 	.profile-photo {
 		width: 100%;
-	}
-
-	p,
-	.pub-abstract {
-		text-align: left;
 	}
 
 	.intro-link {
