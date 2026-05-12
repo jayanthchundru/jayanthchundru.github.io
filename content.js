@@ -1,6 +1,7 @@
 export const profile = {
 	name: "Jayanth Krishna Chundru",
 	location: "Cincinnati, OH",
+	availability: "Looking for full-time opportunities in AI/ML roles",
 	image: "images/Jayanth.jpeg",
 };
 
@@ -71,7 +72,7 @@ export const newsItems = [
 				href: "https://cfe.columbia.edu/content/mlss2",
 				className: "news-link",
 			},
-			{ type: "text", value: " NYC at" },
+			{ type: "text", value: " NYC 🗽 at" },
 			{type : "strong", value: " Columbia University"},
 			{ type: "text", value: "." },
 		],
@@ -81,7 +82,7 @@ export const newsItems = [
 		date: "Apr 2026",
 		segments: [
 			{ type: "text", value: "Received " },
-			{ type: "strong", value: "Best Master's Student Award 2026" },
+			{ type: "strong", value: "Best Master's Student Award 2026 🏆" },
 			{ type: "text", value: " from the " },
 			{
 				type: "link",
@@ -102,7 +103,7 @@ export const newsItems = [
 				href: "https://aclanthology.org/2025.emnlp-main.1499/",
 				className: "news-link",
 			},
-			{ type: "text", value: "." },
+			{ type: "text", value: " in Suzhou, China 🇨🇳." },
 		],
 	},
 	{
@@ -110,14 +111,14 @@ export const newsItems = [
 		segments: [
 			{ type: "text", value: "Joined UC Digital Accelerator Program " },
 			{ type: "link", label: "(Procter & Gamble)", href: "https://us.pg.com/", className: "news-link" },
-			{ type: "text", value: "  as a Research Assistant." },
+			{ type: "text", value: "  as a Research Assistant 🔍." },
 		],
 	},
 	{
 		date: "Aug 2024",
 		segments: [
 			{ type: "text", value: "Moved to the " },
-			{ type: "text", value: "United States" },
+			{ type: "text", value: "United States ✈️" },
 			{ type: "text", value: " to begin my master's degree." },
 		],
 	},
@@ -126,14 +127,14 @@ export const newsItems = [
 		segments: [
 			{ type: "text", value: "Continued at " },
 			{ type: "link", label: "CommScope", href: "https://www.commscope.com/", className: "news-link" },
-			{ type: "text", value: " as a Software Engineer." },
+			{ type: "text", value: " as a Software Engineer 👨‍💻." },
 		],
 	},
 	{
 		date: "May 2023",
 		segments: [
 			{ type: "text", value: "Graduated with a " },
-			{ type: "strong", value: "Silver Medal" },
+			{ type: "strong", value: "Silver Medal 🥈" },
 			{ type: "text", value: " in the 2023 Bachelor's degree cohort." },
 		],
 	},
@@ -142,7 +143,7 @@ export const newsItems = [
 		segments: [
 			{ type: "text", value: "Started a software engineering internship at " },
 			{ type: "link", label: "CommScope", href: "https://www.commscope.com/", className: "news-link" },
-			{ type: "text", value: ", Bangalore." },
+			{ type: "text", value: ", Bangalore 👨‍💻." },
 		],
 	},
 ];
@@ -177,7 +178,7 @@ export const projects = [
 		],
 	},
 	{
-		title: "localrag",
+		title: "Multimodal-RAG",
 		url: "https://github.com/jayanthchundru/localrag",
 		description:
 			"Local-first retrieval-augmented chat over your markdown notes. Indexes Obsidian vaults with sentence-transformers and ChromaDB, then answers from a quantized Llama-3-8B running through llama.cpp - no API keys, no network calls.",
@@ -185,7 +186,7 @@ export const projects = [
 		links: [{ label: "[code]", href: "https://github.com/jayanthchundru/localrag" }],
 	},
 	{
-		title: "vision-cook",
+		title: "FastAPI-Projects",
 		url: "https://github.com/jayanthchundru/vision-cook",
 		description:
 			"Snap a photo of whatever's in your fridge and get a recipe back. Grounds ingredients with CLIP, then prompts GPT-4o with the parsed list and a target cuisine. Tiny Streamlit UI for quick iteration.",
@@ -196,14 +197,31 @@ export const projects = [
 		],
 	},
 	{
-		title: "prompt-arena",
+		title: "Speed-Optimized LLM Inference Server",
 		url: "https://github.com/jayanthchundru/prompt-arena",
 		description:
 			"Lightweight A/B testing framework for LLM prompts. Runs prompt variants over a YAML-defined test set, judges outputs pairwise with a stronger model, and reports win rates with bootstrapped confidence intervals.",
 		tags: ["Evaluation", "LLMs", "Python"],
 		links: [{ label: "[code]", href: "https://github.com/jayanthchundru/prompt-arena" }],
 	},
+		{
+		title: "ViAgent-RL",
+		url: "https://github.com/jayanthchundru/whisper-meet",
+		description:
+			"Real-time meeting transcription with speaker diarization and rolling LLM summaries. Streams audio through whisper.cpp and pyannote on-device, then renders the transcript and live summary in a small React panel.",
+		tags: ["Video Understanding", "Reinforcement Learning", "Agents"],
+		links: [{ label: "[code]", href: "https://github.com/jayanthchundru/whisper-meet" }],
+	},
 	{
+		title: "whisper-meet",
+		image: "images/EMNLP2025_FrameIdentification.png",
+		url: "https://github.com/jayanthchundru/whisper-meet",
+		description:
+			"Real-time meeting transcription with speaker diarization and rolling LLM summaries. Streams audio through whisper.cpp and pyannote on-device, then renders the transcript and live summary in a small React panel.",
+		tags: ["Whisper", "Diarization", "Agents"],
+		links: [{ label: "[code]", href: "https://github.com/jayanthchundru/whisper-meet" }],
+	},
+		{
 		title: "whisper-meet",
 		url: "https://github.com/jayanthchundru/whisper-meet",
 		description:

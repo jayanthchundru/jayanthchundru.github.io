@@ -1,4 +1,6 @@
-import { contactLinks, introSegments, newsItems, profile, publications } from "./content.js";
+import { contactLinks, introSegments, newsItems, profile, projects, publications } from "./content.js";
+
+const THEME_STORAGE_KEY = "portfolio-theme";
 
 const createEl = (tag, className, attrs = {}) => {
 	const element = document.createElement(tag);
@@ -11,6 +13,35 @@ const createEl = (tag, className, attrs = {}) => {
 		}
 	});
 	return element;
+};
+
+const readStoredTheme = () => {
+	try {
+		return localStorage.getItem(THEME_STORAGE_KEY);
+	} catch (err) {
+		return null;
+	}
+};
+
+const writeStoredTheme = (theme) => {
+	try {
+		localStorage.setItem(THEME_STORAGE_KEY, theme);
+	} catch (err) {
+		// Theme still applies for this page load when persistence is unavailable.
+	}
+};
+
+const getPreferredTheme = () => {
+	const storedTheme = readStoredTheme();
+	if (storedTheme === "dark" || storedTheme === "light") {
+		return storedTheme;
+	}
+	return "dark";
+};
+
+const applyTheme = (theme) => {
+	document.documentElement.dataset.theme = theme;
+	writeStoredTheme(theme);
 };
 
 const appendSegments = (parent, segments) => {
@@ -87,6 +118,34 @@ const buildHeader = () => {
 	return header;
 };
 
+const buildThemeToggle = () => {
+	const themeToggle = createEl("button", "theme-toggle", { type: "button" });
+	const syncToggle = () => {
+		const isDark = document.documentElement.dataset.theme === "dark";
+		themeToggle.innerHTML = isDark
+			? `
+				<svg class="theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true">
+					<circle cx="12" cy="12" r="5.2" />
+					<path d="M12 1.8v3M12 19.2v3M4.78 4.78l2.12 2.12M17.1 17.1l2.12 2.12M1.8 12h3M19.2 12h3M4.78 19.22l2.12-2.12M17.1 6.9l2.12-2.12" />
+				</svg>
+			`
+			: `
+				<svg class="theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true">
+					<path d="M17.8 14.4A7.7 7.7 0 0 1 9.6 3.1a9.4 9.4 0 1 0 11.3 11.3 7.65 7.65 0 0 1-3.1 0z" />
+				</svg>
+			`;
+		themeToggle.setAttribute("aria-label", isDark ? "Switch to light mode" : "Switch to dark mode");
+		themeToggle.setAttribute("aria-pressed", String(isDark));
+	};
+	themeToggle.addEventListener("click", () => {
+		const nextTheme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+		applyTheme(nextTheme);
+		syncToggle();
+	});
+	syncToggle();
+	return themeToggle;
+};
+
 const buildPhotoColumn = () => {
 	if (!profile.image) {
 		return null;
@@ -107,6 +166,21 @@ const buildIntro = () => {
 	const intro = createEl("p", "intro-note");
 	appendSegments(intro, introSegments);
 	return intro;
+};
+
+const buildAvailabilityLine = () => {
+	const line = createEl("p", "availability-line");
+	line.innerHTML = `
+		<svg viewBox="0 0 24 24" aria-hidden="true">
+			<path class="pin-needle" d="M10.4 13.6 4.1 19.9a1 1 0 0 0 1.4 1.4l6.3-6.3z" />
+			<path class="pin-stem" d="M9.4 11.2 6.8 8.6l1.8-1.8 8.6 8.6-1.8 1.8-2.6-2.6-7.3 7.3-1.4-1.4z" />
+			<path class="pin-cap" d="M15.9 2.4a1.1 1.1 0 0 1 1.5 0l4.2 4.2a1.1 1.1 0 0 1 0 1.5l-2.7 2.7 1.1 4.1a1 1 0 0 1-1.7.9L8.2 5.7a1 1 0 0 1 .9-1.7l4.1 1.1z" />
+		</svg>
+	`;
+	const label = document.createElement("span");
+	label.textContent = profile.availability;
+	line.append(label);
+	return line;
 };
 
 const buildContactLine = () => {
@@ -229,6 +303,148 @@ const buildPublicationSection = () => {
 	return section;
 };
 
+const getProjectVisualType = (title = "") => {
+	const key = title.toLowerCase();
+	if (key.includes("gpt")) {
+		return "tokens";
+	}
+	if (key.includes("rag")) {
+		return "retrieval";
+	}
+	if (key.includes("vision") || key.includes("cook")) {
+		return "vision";
+	}
+	if (key.includes("arena")) {
+		return "arena";
+	}
+	if (key.includes("whisper")) {
+		return "audio";
+	}
+	return "default";
+};
+
+const buildProjectVisual = (project) => {
+	const type = getProjectVisualType(project.title);
+	const visual = createEl("div", `project-visual project-visual-${type}`, {
+		"aria-hidden": "true",
+	});
+
+	if (project.image) {
+		const image = createEl("img", "project-image", {
+			src: project.image,
+			alt: "",
+		});
+		visual.append(image);
+		return visual;
+	}
+
+	if (type === "tokens") {
+		["draft", "verify", "accept"].forEach((label) => {
+			const token = createEl("span", "visual-token");
+			token.textContent = label;
+			visual.append(token);
+		});
+		return visual;
+	}
+
+	if (type === "retrieval") {
+		for (let index = 0; index < 5; index += 1) {
+			const node = createEl("span", "visual-node");
+			visual.append(node);
+		}
+		const query = createEl("span", "visual-query");
+		visual.append(query);
+		return visual;
+	}
+
+	if (type === "vision") {
+		const lens = createEl("span", "visual-lens");
+		const plate = createEl("span", "visual-plate");
+		const ingredientA = createEl("span", "visual-ingredient visual-ingredient-a");
+		const ingredientB = createEl("span", "visual-ingredient visual-ingredient-b");
+		visual.append(lens, plate, ingredientA, ingredientB);
+		return visual;
+	}
+
+	if (type === "arena") {
+		["A", "B"].forEach((label) => {
+			const contender = createEl("span", "visual-contender");
+			contender.textContent = label;
+			visual.append(contender);
+		});
+		const score = createEl("span", "visual-score");
+		visual.append(score);
+		return visual;
+	}
+
+	if (type === "audio") {
+		for (let index = 0; index < 14; index += 1) {
+			const bar = createEl("span", "visual-wave");
+			bar.style.setProperty("--wave-index", index);
+			visual.append(bar);
+		}
+		return visual;
+	}
+
+	const pulse = createEl("span", "visual-pulse");
+	visual.append(pulse);
+	return visual;
+};
+
+const buildProject = (project) => {
+	const article = createEl("article", "project-card");
+	article.append(buildProjectVisual(project));
+
+	const body = createEl("div", "project-body");
+	const title = createEl("h3", "project-title");
+	const titleLink = createEl("a", "", {
+		href: project.url,
+		target: "_blank",
+		rel: "noopener noreferrer",
+	});
+	titleLink.textContent = project.title;
+	const externalIcon = createEl("span", "project-external-icon");
+	externalIcon.innerHTML = `
+		<svg viewBox="0 0 24 24" aria-hidden="true">
+			<path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3z" />
+			<path d="M5 5h6v2H7v10h10v-4h2v6H5V5z" />
+		</svg>
+	`;
+	titleLink.append(document.createTextNode(" "), externalIcon);
+	title.append(titleLink);
+
+	const stack = createEl("p", "project-stack");
+	stack.textContent = (project.tags || []).join(", ");
+
+	const description = createEl("p", "project-description");
+	description.textContent = project.description;
+
+	body.append(title, stack, description);
+	if ((project.description || "").length > 95) {
+		const toggle = createEl("button", "project-description-toggle", { type: "button" });
+		toggle.textContent = "see more";
+		toggle.addEventListener("click", () => {
+			const isExpanded = article.classList.toggle("is-expanded");
+			toggle.textContent = isExpanded ? "see less" : "see more";
+		});
+		body.append(toggle);
+	}
+	article.append(body);
+	return article;
+};
+
+const buildProjectsSection = () => {
+	const section = createEl("section", "projects-section", { id: "projects" });
+	const title = createEl("div", "section-title");
+	title.textContent = "Projects";
+	const list = createEl("div", "project-list");
+	projects.forEach((project) => {
+		list.append(buildProject(project));
+	});
+	section.append(title, list);
+	return section;
+};
+
 const renderPortfolio = () => {
 	const mount = document.getElementById("app");
 	if (!mount) {
@@ -237,18 +453,22 @@ const renderPortfolio = () => {
 
 	const main = document.createElement("main");
 	const photoColumn = buildPhotoColumn();
-	const children = [buildHeader()];
+	const children = [buildThemeToggle(), buildHeader()];
 	if (photoColumn) {
 		children.push(photoColumn);
 	}
 	children.push(
 		buildIntro(),
+		buildAvailabilityLine(),
 		buildContactLine(),
 		buildNewsSection(),
-		buildPublicationSection()
+		buildPublicationSection(),
+		// Projects are hidden while they are still under development.
+		// buildProjectsSection()
 	);
 	main.append(...children);
 	mount.replaceChildren(main);
 };
 
+applyTheme(getPreferredTheme());
 renderPortfolio();

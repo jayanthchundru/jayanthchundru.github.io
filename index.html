@@ -11,6 +11,15 @@
 			rel="stylesheet"
 			href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap"
 		/>
+		<script>
+			(() => {
+				let storedTheme = null;
+				try {
+					storedTheme = localStorage.getItem("portfolio-theme");
+				} catch (err) {}
+				document.documentElement.dataset.theme = storedTheme || "dark";
+			})();
+		</script>
 		<link rel="stylesheet" href="styles.css" />
 		<script type="module" src="app.js"></script>
 	</head>
