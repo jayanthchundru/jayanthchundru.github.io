@@ -270,24 +270,10 @@ const buildPublication = (publication) => {
 	}
 
 	const abstractWrap = createEl("p", "pub-abstract-wrap");
-	const abstractText = createEl("span", "pub-abstract-text");
-	const fullAbstract = publication.abstract || "";
-	const collapsedAbstract =
-		fullAbstract.length > 260 ? `${fullAbstract.slice(0, 260).trimEnd()}...` : fullAbstract;
-	abstractText.textContent = collapsedAbstract;
-	const abstractToggle = createEl("button", "pub-abstract-toggle", { type: "button" });
-	abstractToggle.textContent = "see more";
-	abstractToggle.addEventListener("click", () => {
-		const isExpanded = abstractWrap.classList.toggle("is-expanded");
-		abstractText.textContent = isExpanded ? fullAbstract : collapsedAbstract;
-		abstractToggle.textContent = isExpanded ? "see less" : "see more";
-	});
-	abstractWrap.append(abstractText, document.createTextNode(" "), abstractToggle);
+	abstractWrap.textContent = publication.abstract || "";
 
-	content.append(title, authors, venueRow, tags);
+	content.append(title, authors, venueRow, tags, abstractWrap);
 	article.append(content);
-	abstractWrap.classList.add("pub-abstract-full");
-	article.append(abstractWrap);
 	return article;
 };
 
@@ -339,21 +325,43 @@ const buildProjectVisual = (project) => {
 	}
 
 	if (type === "tokens") {
-		["draft", "verify", "accept"].forEach((label) => {
-			const token = createEl("span", "visual-token");
-			token.textContent = label;
-			visual.append(token);
-		});
+		const input = createEl("span", "visual-gpt-chip visual-gpt-input");
+		input.textContent = "text";
+		const transformer = createEl("span", "visual-gpt-block");
+		transformer.textContent = "transformer";
+		const output = createEl("span", "visual-gpt-chip visual-gpt-output");
+		output.textContent = "next token";
+		const loop = createEl("span", "visual-gpt-loop");
+		visual.append(input, transformer, output, loop);
 		return visual;
 	}
 
 	if (type === "retrieval") {
-		for (let index = 0; index < 5; index += 1) {
-			const node = createEl("span", "visual-node");
-			visual.append(node);
+		const pdf = createEl("span", "visual-rag-pdf");
+		pdf.textContent = "PDF";
+
+		const chunks = createEl("span", "visual-rag-image-chunks");
+		for (let index = 0; index < 3; index += 1) {
+			const chunk = createEl("span", "visual-rag-image-chunk");
+			chunks.append(chunk);
 		}
-		const query = createEl("span", "visual-query");
-		visual.append(query);
+
+		const database = createEl("span", "visual-rag-image-db");
+		database.textContent = "img db";
+
+		const prompt = createEl("span", "visual-rag-prompt");
+		prompt.textContent = "prompt";
+
+		const retrieved = createEl("span", "visual-rag-retrieved");
+		for (let index = 0; index < 3; index += 1) {
+			const chunk = createEl("span", "visual-rag-retrieved-chunk");
+			retrieved.append(chunk);
+		}
+
+		const answer = createEl("span", "visual-rag-answer");
+		answer.textContent = "response";
+		const flow = createEl("span", "visual-rag-flow");
+		visual.append(pdf, chunks, database, prompt, retrieved, answer, flow);
 		return visual;
 	}
 
