@@ -1,6 +1,16 @@
-import { contactLinks, introSegments, newsItems, profile, projects, publications } from "./content.js";
+import {
+	affiliations,
+	contactLinks,
+	introSegments,
+	newsItems,
+	profile,
+	projects,
+	publications,
+	templateCredits,
+} from "./content.js";
 
 const THEME_STORAGE_KEY = "portfolio-theme";
+const NEWS_VISIBLE_ITEM_LIMIT = 10;
 
 const createEl = (tag, className, attrs = {}) => {
 	const element = document.createElement(tag);
@@ -39,9 +49,17 @@ const getPreferredTheme = () => {
 	return "dark";
 };
 
+const syncThemedImages = () => {
+	const isDark = document.documentElement.dataset.theme === "dark";
+	document.querySelectorAll("[data-light-src][data-dark-src]").forEach((image) => {
+		image.setAttribute("src", isDark ? image.dataset.darkSrc : image.dataset.lightSrc);
+	});
+};
+
 const applyTheme = (theme) => {
 	document.documentElement.dataset.theme = theme;
 	writeStoredTheme(theme);
+	syncThemedImages();
 };
 
 const appendSegments = (parent, segments) => {
@@ -61,6 +79,12 @@ const appendSegments = (parent, segments) => {
 			});
 			link.textContent = segment.label;
 			parent.append(link);
+			return;
+		}
+		if (segment.className) {
+			const span = createEl("span", segment.className);
+			span.textContent = segment.value;
+			parent.append(span);
 			return;
 		}
 		parent.append(document.createTextNode(segment.value));
@@ -101,9 +125,17 @@ const buildLocationBadge = () => {
 };
 
 const buildNavRow = (items) => {
-	const nav = createEl("nav", "nav-row");
-	items.forEach((item) => {
-		const link = createEl("a", "", { href: item.href });
+	const nav = createEl("nav", "nav-row", { "aria-label": "Primary" });
+	items.forEach((item, index) => {
+		if (index > 0) {
+			const separator = createEl("span", "nav-separator", { "aria-hidden": "true" });
+			separator.textContent = "·";
+			nav.append(separator);
+		}
+		const link = createEl("a", "", {
+			href: item.href,
+			"aria-current": item.current ? "page" : undefined,
+		});
 		link.textContent = item.label;
 		nav.append(link);
 	});
@@ -114,7 +146,16 @@ const buildHeader = () => {
 	const header = document.createElement("header");
 	const title = document.createElement("h1");
 	title.textContent = profile.name;
-	header.append(title);
+	const nav = buildNavRow([
+		{ label: "Home", href: "./", current: true },
+		{ label: "Research", href: "#publications" },
+		{ label: "Projects", href: "#projects" },
+		{ label: "Blogs", href: "blogs/" },
+	]);
+	const separator = createEl("span", "nav-separator", { "aria-hidden": "true" });
+	separator.textContent = "·";
+	nav.append(separator, buildThemeToggle());
+	header.append(title, nav);
 	return header;
 };
 
@@ -206,6 +247,30 @@ const buildNewsItem = (item) => {
 	return entry;
 };
 
+const setNewsScrollLimit = (list) => {
+	const items = Array.from(list.children);
+	if (items.length <= NEWS_VISIBLE_ITEM_LIMIT) {
+		return;
+	}
+
+	const syncHeight = () => {
+		const cutoffItem = items[NEWS_VISIBLE_ITEM_LIMIT];
+		if (!cutoffItem) {
+			return;
+		}
+		const listTop = list.getBoundingClientRect().top;
+		const cutoffTop = cutoffItem.getBoundingClientRect().top;
+		const maxHeight = Math.ceil(cutoffTop - listTop);
+		if (maxHeight > 0) {
+			list.style.setProperty("--news-scroll-height", `${maxHeight}px`);
+		}
+	};
+
+	list.classList.add("is-scrollable");
+	requestAnimationFrame(syncHeight);
+	window.addEventListener("resize", syncHeight);
+};
+
 const buildNewsSection = () => {
 	const section = createEl("section", "list-block");
 	const title = createEl("div", "section-title");
@@ -214,7 +279,67 @@ const buildNewsSection = () => {
 	newsItems.forEach((item) => {
 		list.append(buildNewsItem(item));
 	});
+	setNewsScrollLimit(list);
 	section.append(title, list);
+	return section;
+};
+
+const buildAffiliation = (affiliation) => {
+	const cardClass = ["affiliation-card", affiliation.className].filter(Boolean).join(" ");
+	const hasTitleLinks = Boolean(affiliation.titleSegments);
+	const card = createEl(
+		hasTitleLinks ? "div" : "a",
+		cardClass,
+		hasTitleLinks
+			? {}
+			: {
+					href: affiliation.url,
+					target: "_blank",
+					rel: "noopener noreferrer",
+					"aria-label": affiliation.name,
+				}
+	);
+	const logoWrap = createEl("span", "affiliation-logo-wrap");
+	const isDark = document.documentElement.dataset.theme === "dark";
+	const logo = createEl("img", "affiliation-logo", {
+		src: isDark && affiliation.darkImage ? affiliation.darkImage : affiliation.image,
+		alt: affiliation.name,
+		loading: "lazy",
+		"data-light-src": affiliation.darkImage ? affiliation.image : undefined,
+		"data-dark-src": affiliation.darkImage,
+	});
+	if (hasTitleLinks) {
+		const logoLink = createEl("a", "affiliation-logo-link", {
+			href: affiliation.url,
+			target: "_blank",
+			rel: "noopener noreferrer",
+			"aria-label": affiliation.name,
+		});
+		logoLink.append(logo);
+		logoWrap.append(logoLink);
+	} else {
+		logoWrap.append(logo);
+	}
+
+	const label = createEl("span", "affiliation-label");
+	if (affiliation.titleSegments) {
+		appendSegments(label, affiliation.titleSegments);
+	} else {
+		label.textContent = affiliation.title;
+	}
+	const date = createEl("span", "affiliation-date");
+	date.textContent = affiliation.date;
+	card.append(logoWrap, label, date);
+	return card;
+};
+
+const buildAffiliationsSection = () => {
+	const section = createEl("section", "affiliations-section");
+	const list = createEl("div", "affiliations-list");
+	affiliations.forEach((affiliation) => {
+		list.append(buildAffiliation(affiliation));
+	});
+	section.append(list);
 	return section;
 };
 
@@ -453,6 +578,14 @@ const buildProjectsSection = () => {
 	return section;
 };
 
+const buildFooter = () => {
+	const footer = document.createElement("footer");
+	const credit = createEl("p", "footer-note");
+	appendSegments(credit, templateCredits);
+	footer.append(credit);
+	return footer;
+};
+
 const renderPortfolio = () => {
 	const mount = document.getElementById("app");
 	if (!mount) {
@@ -461,7 +594,7 @@ const renderPortfolio = () => {
 
 	const main = document.createElement("main");
 	const photoColumn = buildPhotoColumn();
-	const children = [buildThemeToggle(), buildHeader()];
+	const children = [buildHeader()];
 	if (photoColumn) {
 		children.push(photoColumn);
 	}
@@ -470,9 +603,10 @@ const renderPortfolio = () => {
 		buildAvailabilityLine(),
 		buildContactLine(),
 		buildNewsSection(),
+		buildAffiliationsSection(),
 		buildPublicationSection(),
-		// Projects are hidden while they are still under development.
-		// buildProjectsSection()
+		buildProjectsSection(),
+		buildFooter()
 	);
 	main.append(...children);
 	mount.replaceChildren(main);

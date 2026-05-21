@@ -61,6 +61,75 @@ export const contactLinks = [
 	},
 ];
 
+export const affiliations = [
+	{
+		name: "1819 Innovation Hub",
+		title: "Research Assistant (P&G)",
+		titleSegments: [
+			{ type: "text", value: "Research Assistant (" },
+			{
+				type: "link",
+				label: "P&G",
+				href: "https://us.pg.com/",
+				className: "affiliation-label-link",
+			},
+			{ type: "text", value: ")" },
+		],
+		date: "May '25 - Present",
+		image: "images/innovationhub.png",
+		darkImage: "images/innovationhub.D.png",
+		url: "https://innovation.uc.edu/",
+	},
+	{
+		name: "CincyNLP",
+		title: "Graduate Researcher",
+		date: "Aug '24 - Present",
+		image: "images/CincyNLP.png",
+		url: "https://jiangtianyu.com/lab/",
+	},
+	{
+		name: "University of Cincinnati",
+		title: "M.S. Computer Science",
+		date: "Aug '24 - Present",
+		image: "images/UC.png",
+		url: "https://www.uc.edu/",
+	},
+	{
+		name: "CommScope",
+		title: "Software Engineer",
+		date: "July '22 - July '24",
+		image: "images/COMM.png",
+		darkImage: "images/COMM.D.png",
+		url: "https://www.commscope.com/",
+	},
+	{
+		name: "SRMIST Ramapuram",
+		title: "B.Tech CSE",
+		date: "July '19 - May '23",
+		image: "images/SRM.png",
+		url: "https://srmrmp.edu.in/",
+	},
+];
+
+export const templateCredits = [
+	{ type: "text", value: "© 2026 Jayanth Krishna Chundru. " },
+	{ type: "text", value: "Website design ideas borrowed from ", className: "footer-credit-extra" },
+	{
+		type: "link",
+		label: "al-folio",
+		href: "https://github.com/alshedivat/al-folio",
+		className: "footer-credit-extra",
+	},
+	{ type: "text", value: " and ", className: "footer-credit-extra" },
+	{
+		type: "link",
+		label: "Jon Barron's website",
+		href: "https://jonbarron.info/",
+		className: "footer-credit-extra",
+	},
+	{ type: "text", value: ", with my own tweaks.", className: "footer-credit-extra" },
+];
+
 export const newsItems = [
 		{
 		date: "Apr 2026",
@@ -96,7 +165,7 @@ export const newsItems = [
 	{
 		date: "Aug 2025",
 		segments: [
-			{ type: "text", value: "Paper accepted to " },
+			{ type: "text", value: "Paper on Frame Semantics got accepted to " },
 			{
 				type: "link",
 				label: "EMNLP 2025",
@@ -135,7 +204,7 @@ export const newsItems = [
 		segments: [
 			{ type: "text", value: "Graduated with a " },
 			{ type: "strong", value: "Silver Medal 🥈" },
-			{ type: "text", value: " in the 2023 Bachelor's degree cohort." },
+			{ type: "text", value: "  (2nd Ranker) in the 2023 Bachelor's degree cohort." },
 		],
 	},
 	{
@@ -169,6 +238,7 @@ export const projects = [
 	{
 		title: "Mini-GPT",
 		url: "https://github.com/jayanthchundru/GPT-from-scratch",
+		image: "images/mini-gpt.png",
 		description:
 			"GPT language model built from scratch in PyTorch, with tokenization, causal self-attention, transformer blocks, and autoregressive next-token generation.",
 		tags: ["PyTorch", "Transformers", "Self-Attention"],
@@ -179,53 +249,21 @@ export const projects = [
 	},
 	{
 		title: "Multimodal-RAG",
-		url: "https://github.com/jayanthchundru/localrag",
+		url: "https://github.com/jayanthchundru/multimodal-rag.git",
 		description:
-			"Local-first retrieval-augmented chat over your markdown notes. Indexes Obsidian vaults with sentence-transformers and ChromaDB, then answers from a quantized Llama-3-8B running through llama.cpp - no API keys, no network calls.",
-		tags: ["Llama.cpp", "RAG", "Embeddings"],
-		links: [{ label: "[code]", href: "https://github.com/jayanthchundru/localrag" }],
+			"Multimodal RAG pipeline that combines vision-language retrieval (ColQwen2) with Meta’s Llama 3.2 Vision to enable efficient question answering over visually rich documents like PDFs, tables, charts, and scanned pages without relying solely on OCR.",
+		tags: ["Embeddings", "ColQwen", "Llama"],
+		links: [{ label: "[code]", href: "https://github.com/jayanthchundru/multimodal-rag.git" }],
 	},
 	{
 		title: "FastAPI-Projects",
-		url: "https://github.com/jayanthchundru/vision-cook",
+		url: "https://github.com/jayanthchundru/FastAPI-Projects",
+		image: "images/fastapi.png",
 		description:
-			"Snap a photo of whatever's in your fridge and get a recipe back. Grounds ingredients with CLIP, then prompts GPT-4o with the parsed list and a target cuisine. Tiny Streamlit UI for quick iteration.",
-		tags: ["Multimodal", "CLIP", "OpenAI"],
+			"FastAPI applications ranging from CRUD systems to RAG pipelines, integrating authentication, WebSockets, Celery-based async processing, ML model serving, and vector search for real-time AI-powered applications.",
+		tags: ["APIs", "Python", "Inference"],
 		links: [
-			{ label: "[code]", href: "https://github.com/jayanthchundru/vision-cook" },
-			{ label: "[demo]", href: "https://vision-cook.streamlit.app/" },
+			{ label: "[code]", href: "https://github.com/jayanthchundru/FastAPI-Projects" }
 		],
-	},
-	{
-		title: "Speed-Optimized LLM Inference Server",
-		url: "https://github.com/jayanthchundru/prompt-arena",
-		description:
-			"Lightweight A/B testing framework for LLM prompts. Runs prompt variants over a YAML-defined test set, judges outputs pairwise with a stronger model, and reports win rates with bootstrapped confidence intervals.",
-		tags: ["Evaluation", "LLMs", "Python"],
-		links: [{ label: "[code]", href: "https://github.com/jayanthchundru/prompt-arena" }],
-	},
-		{
-		title: "ViAgent-RL",
-		url: "https://github.com/jayanthchundru/whisper-meet",
-		description:
-			"Real-time meeting transcription with speaker diarization and rolling LLM summaries. Streams audio through whisper.cpp and pyannote on-device, then renders the transcript and live summary in a small React panel.",
-		tags: ["Video Understanding", "Reinforcement Learning", "Agents"],
-		links: [{ label: "[code]", href: "https://github.com/jayanthchundru/whisper-meet" }],
-	},
-	{
-		title: "whisper-meet",
-		url: "https://github.com/jayanthchundru/whisper-meet",
-		description:
-			"Real-time meeting transcription with speaker diarization and rolling LLM summaries. Streams audio through whisper.cpp and pyannote on-device, then renders the transcript and live summary in a small React panel.",
-		tags: ["Whisper", "Diarization", "Agents"],
-		links: [{ label: "[code]", href: "https://github.com/jayanthchundru/whisper-meet" }],
-	},
-		{
-		title: "whisper-meet",
-		url: "https://github.com/jayanthchundru/whisper-meet",
-		description:
-			"Real-time meeting transcription with speaker diarization and rolling LLM summaries. Streams audio through whisper.cpp and pyannote on-device, then renders the transcript and live summary in a small React panel.",
-		tags: ["Whisper", "Diarization", "Agents"],
-		links: [{ label: "[code]", href: "https://github.com/jayanthchundru/whisper-meet" }],
-	},
+	}
 ];
