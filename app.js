@@ -10,7 +10,7 @@ import {
 } from "./content.js";
 
 const THEME_STORAGE_KEY = "portfolio-theme";
-const NEWS_VISIBLE_ITEM_LIMIT = 10;
+const NEWS_VISIBLE_ITEM_LIMIT = 5;
 
 const createEl = (tag, className, attrs = {}) => {
 	const element = document.createElement(tag);
@@ -46,7 +46,7 @@ const getPreferredTheme = () => {
 	if (storedTheme === "dark" || storedTheme === "light") {
 		return storedTheme;
 	}
-	return "dark";
+	return "light";
 };
 
 const syncThemedImages = () => {
