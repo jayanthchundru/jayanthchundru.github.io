@@ -142,8 +142,9 @@ p,
 .pub-abstract {
 	text-align: justify;
 	text-justify: inter-word;
-	hyphens: auto;
-	overflow-wrap: anywhere;
+	hyphens: manual;
+	overflow-wrap: break-word;
+	word-break: normal;
 }
 
 .news-text {
