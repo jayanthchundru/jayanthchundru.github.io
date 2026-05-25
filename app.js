@@ -247,28 +247,34 @@ const buildNewsItem = (item) => {
 	return entry;
 };
 
-const setNewsScrollLimit = (list) => {
+const addNewsToggle = (section, list) => {
 	const items = Array.from(list.children);
 	if (items.length <= NEWS_VISIBLE_ITEM_LIMIT) {
 		return;
 	}
 
-	const syncHeight = () => {
-		const cutoffItem = items[NEWS_VISIBLE_ITEM_LIMIT];
-		if (!cutoffItem) {
-			return;
-		}
-		const listTop = list.getBoundingClientRect().top;
-		const cutoffTop = cutoffItem.getBoundingClientRect().top;
-		const maxHeight = Math.ceil(cutoffTop - listTop);
-		if (maxHeight > 0) {
-			list.style.setProperty("--news-scroll-height", `${maxHeight}px`);
-		}
+	let isExpanded = false;
+	const toggle = createEl("button", "news-toggle", {
+		type: "button",
+		"aria-expanded": "false",
+	});
+	toggle.textContent = "More news ....";
+
+	const syncItems = () => {
+		items.forEach((item, index) => {
+			item.hidden = !isExpanded && index >= NEWS_VISIBLE_ITEM_LIMIT;
+		});
+		toggle.textContent = isExpanded ? "Show less" : "More news ....";
+		toggle.setAttribute("aria-expanded", String(isExpanded));
 	};
 
-	list.classList.add("is-scrollable");
-	requestAnimationFrame(syncHeight);
-	window.addEventListener("resize", syncHeight);
+	toggle.addEventListener("click", () => {
+		isExpanded = !isExpanded;
+		syncItems();
+	});
+
+	syncItems();
+	section.append(toggle);
 };
 
 const buildNewsSection = () => {
@@ -279,8 +285,8 @@ const buildNewsSection = () => {
 	newsItems.forEach((item) => {
 		list.append(buildNewsItem(item));
 	});
-	setNewsScrollLimit(list);
 	section.append(title, list);
+	addNewsToggle(section, list);
 	return section;
 };
 

@@ -360,18 +360,15 @@ a:hover {
 	margin: 8px 0 0;
 }
 
-.news-list.is-scrollable {
-	max-height: var(--news-scroll-height, 18rem);
-	overflow-y: auto;
-	padding-right: 0.45rem;
-	scrollbar-gutter: stable;
-}
-
 .news-item {
 	display: grid;
 	grid-template-columns: 5.75rem 1fr;
 	gap: 0.625rem;
 	padding: 2px 0;
+}
+
+.news-item[hidden] {
+	display: none;
 }
 
 .news-item:first-child {
@@ -403,6 +400,26 @@ a:hover {
 
 .news-text a:hover {
 	color: var(--accent);
+}
+
+.news-toggle {
+	display: flex;
+	align-items: center;
+	width: fit-content;
+	margin: 6px 0 0;
+	padding: 0;
+	border: 0;
+	background: transparent;
+	color: var(--accent);
+	font: inherit;
+	font-size: 0.92rem;
+	line-height: 1.2;
+	cursor: pointer;
+}
+
+.news-toggle:hover {
+	color: var(--text);
+	text-decoration: underline;
 }
 
 .affiliations-section {
