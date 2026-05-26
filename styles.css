@@ -659,12 +659,25 @@ a:hover {
 	}
 
 	p,
-	.intro-note,
 	.news-text,
 	.pub-abstract {
 		text-align: left;
 		text-justify: auto;
 		hyphens: none;
+	}
+
+	.intro-note {
+		text-align: justify;
+		text-justify: inter-word;
+		hyphens: auto;
+		overflow-wrap: break-word;
+		word-break: normal;
+	}
+
+	.pub-abstract {
+		text-align: justify;
+		text-justify: inter-word;
+		hyphens: manual;
 	}
 
 	.news-list {
@@ -686,6 +699,9 @@ a:hover {
 	.news-text {
 		display: inline;
 		font-size: 0.88rem;
+		text-align: justify;
+		text-justify: inter-word;
+		hyphens: auto;
 	}
 
 	.pub-item {
