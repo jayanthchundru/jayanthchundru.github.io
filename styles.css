@@ -658,8 +658,42 @@ a:hover {
 		white-space: normal;
 	}
 
+	p,
+	.intro-note,
+	.news-text,
+	.pub-abstract {
+		text-align: left;
+		text-justify: auto;
+		hyphens: none;
+	}
+
+	.news-list {
+		margin-top: 6px;
+	}
+
+	.news-item {
+		display: block;
+		padding: 3px 0;
+		line-height: 1.38;
+	}
+
+	.news-date {
+		display: inline;
+		margin-right: 0.45rem;
+		font-size: 0.82rem;
+	}
+
+	.news-text {
+		display: inline;
+		font-size: 0.88rem;
+	}
+
 	.pub-item {
 		grid-template-columns: 1fr;
+	}
+
+	.gallery-grid {
+		columns: 1;
 	}
 
 	.affiliations-list {
@@ -785,6 +819,97 @@ a:hover {
 .nav-row a[aria-current="page"] {
 	color: var(--text);
 	text-decoration: none;
+}
+
+.gallery-section {
+	clear: both;
+	margin: 28px 0 0;
+}
+
+.gallery-section h2 {
+	margin: 0 0 10px;
+	font-size: 1.15rem;
+	font-weight: 500;
+	line-height: 1.2;
+}
+
+.gallery-grid {
+	columns: 2 14rem;
+	column-gap: 16px;
+}
+
+.gallery-item {
+	position: relative;
+	display: inline-block;
+	width: 100%;
+	margin: 0 0 18px;
+	break-inside: avoid;
+}
+
+.gallery-item img,
+.gallery-placeholder {
+	display: block;
+	width: 100%;
+	height: auto;
+	border: 1px solid var(--rule);
+	border-radius: 0;
+	background: var(--paper);
+	box-shadow: 0 10px 24px rgba(23, 32, 51, 0.08);
+}
+
+.gallery-placeholder {
+	display: grid;
+	place-items: center;
+	aspect-ratio: 4 / 3;
+	color: var(--muted);
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+	font-size: 2rem;
+	background:
+		linear-gradient(135deg, var(--project-visual-start), var(--project-visual-end)),
+		var(--paper);
+}
+
+.gallery-caption {
+	margin: 0.45rem 0 0;
+	padding: 0;
+	border-left: 0;
+}
+
+.gallery-caption p {
+	margin: 0;
+	color: var(--text);
+	font-size: 0.95rem;
+	line-height: 1.35;
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.gallery-item img {
+		cursor: zoom-in;
+	}
+}
+
+.gallery-lightbox {
+	position: fixed;
+	inset: 0;
+	z-index: 20;
+	display: none;
+	align-items: center;
+	justify-content: center;
+	padding: clamp(1rem, 3vw, 2.5rem);
+	background: rgba(15, 17, 21, 0.86);
+	cursor: zoom-out;
+}
+
+.gallery-lightbox.is-open {
+	display: flex;
+}
+
+.gallery-lightbox img {
+	display: block;
+	max-width: 100%;
+	max-height: 100%;
+	object-fit: contain;
+	background: var(--paper);
 }
 
 .project-item {

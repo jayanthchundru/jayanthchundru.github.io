@@ -232,7 +232,7 @@ const renderProjectsPage = () => {
 		return;
 	}
 	const main = document.createElement("main");
-	main.append(buildTopHomeLink(), buildHeader(), buildIntro(), buildProjectsSection(), buildBackLink());
+	main.append(buildTopHomeLink(), buildHeader(), buildIntro(), /* buildProjectsSection(), */ buildBackLink());
 	mount.replaceChildren(main);
 };
 

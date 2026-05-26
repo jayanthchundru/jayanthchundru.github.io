@@ -151,6 +151,7 @@ const buildHeader = () => {
 		{ label: "Research", href: "#publications" },
 		// { label: "Projects", href: "#projects" },
 		{ label: "Blogs", href: "blogs/" },
+		{ label: "Gallery", href: "gallery/" },
 	]);
 	const separator = createEl("span", "nav-separator", { "aria-hidden": "true" });
 	separator.textContent = "·";

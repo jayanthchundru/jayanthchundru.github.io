@@ -76,44 +76,44 @@ export const affiliations = [
 			{ type: "text", value: ")" },
 		],
 		date: "May '25 - Present",
-		image: "images/innovationhub.png",
-		darkImage: "images/innovationhub.D.png",
+		image: "images/logos/innovationhub.png",
+		darkImage: "images/logos/innovationhub.D.png",
 		url: "https://innovation.uc.edu/",
 	},
 	{
 		name: "CincyNLP",
 		title: "Graduate Researcher",
 		date: "Aug '24 - Present",
-		image: "images/CincyNLP.png",
+		image: "images/logos/CincyNLP.png",
 		url: "https://jiangtianyu.com/lab/",
 	},
 	{
 		name: "University of Cincinnati",
 		title: "M.S. Computer Science",
 		date: "Aug '24 - Present",
-		image: "images/UC.png",
+		image: "images/logos/UC.png",
 		url: "https://www.uc.edu/",
 	},
 	{
 		name: "CommScope",
 		title: "Software Engineer",
 		date: "July '22 - July '24",
-		image: "images/COMM.png",
-		darkImage: "images/COMM.D.png",
+		image: "images/logos/COMM.png",
+		darkImage: "images/logos/COMM.D.png",
 		url: "https://www.commscope.com/",
 	},
 	{
 		name: "SRMIST Ramapuram",
 		title: "B.Tech CSE",
 		date: "July '19 - May '23",
-		image: "images/SRM.png",
+		image: "images/logos/SRM.png",
 		url: "https://srmrmp.edu.in/",
 	},
 ];
 
 export const templateCredits = [
 	{ type: "text", value: "© 2026 Jayanth Krishna Chundru. " },
-	{ type: "text", value: "Website design ideas borrowed from ", className: "footer-credit-extra" },
+	{ type: "text", value: "Credits: ", className: "footer-credit-extra" },
 	{
 		type: "link",
 		label: "al-folio",
@@ -123,11 +123,11 @@ export const templateCredits = [
 	{ type: "text", value: " and ", className: "footer-credit-extra" },
 	{
 		type: "link",
-		label: "Jon Barron's website",
+		label: "Jon Barron",
 		href: "https://jonbarron.info/",
 		className: "footer-credit-extra",
 	},
-	{ type: "text", value: ", with my own tweaks.", className: "footer-credit-extra" },
+	{ type: "text", value: ".", className: "footer-credit-extra" },
 ];
 
 export const newsItems = [
@@ -227,7 +227,7 @@ export const publications = [
 			{ label: "[paper]", href: "https://aclanthology.org/2025.emnlp-main.1499/" },
 			{ label: "[code]", href: "https://github.com/cincynlp/FrameID" },
 		],
-		thumb: "images/EMNLP2025_FrameIdentification.png",
+		thumb: "images/pubs/EMNLP2025_FrameIdentification.png",
 		tags: ["LLMs", "Computational Semantics"],
 		abstract:
 			"Evaluated LLMs inherent frame-semantic knowledge on the FrameNet dataset using the Frame Identification task, where structured prompting techniques, frame-definition generation experiments, and further fine-tuning on the Llama 3.1 8B model showed strong in-domain performance and cross-domain generalization.",
@@ -238,7 +238,7 @@ export const projects = [
 	{
 		title: "Mini-GPT",
 		url: "https://github.com/jayanthchundru/GPT-from-scratch",
-		image: "images/mini-gpt.png",
+		image: "images/blogs/mini-gpt.png",
 		description:
 			"GPT language model built from scratch in PyTorch, with tokenization, causal self-attention, transformer blocks, and autoregressive next-token generation.",
 		tags: ["PyTorch", "Transformers", "Self-Attention"],
@@ -258,7 +258,7 @@ export const projects = [
 	{
 		title: "FastAPI-Projects",
 		url: "https://github.com/jayanthchundru/FastAPI-Projects",
-		image: "images/fastapi.png",
+		image: "images/blogs/fastapi.png",
 		description:
 			"FastAPI applications ranging from CRUD systems to RAG pipelines, integrating authentication, WebSockets, Celery-based async processing, ML model serving, and vector search for real-time AI-powered applications.",
 		tags: ["APIs", "Python", "Inference"],
