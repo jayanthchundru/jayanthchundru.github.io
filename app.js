@@ -149,7 +149,7 @@ const buildHeader = () => {
 	const nav = buildNavRow([
 		{ label: "Home", href: "./", current: true },
 		{ label: "Research", href: "#publications" },
-		{ label: "Projects", href: "#projects" },
+		// { label: "Projects", href: "#projects" },
 		{ label: "Blogs", href: "blogs/" },
 	]);
 	const separator = createEl("span", "nav-separator", { "aria-hidden": "true" });
@@ -611,7 +611,7 @@ const renderPortfolio = () => {
 		buildNewsSection(),
 		buildAffiliationsSection(),
 		buildPublicationSection(),
-		buildProjectsSection(),
+		// buildProjectsSection(),
 		buildFooter()
 	);
 	main.append(...children);
