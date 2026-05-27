@@ -705,7 +705,8 @@ a:hover {
 		word-break: normal;
 	}
 
-	.pub-abstract {
+	.pub-abstract,
+	.pub-abstract-wrap {
 		text-align: justify;
 		text-justify: inter-word;
 		hyphens: manual;
