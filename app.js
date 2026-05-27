@@ -145,7 +145,11 @@ const buildNavRow = (items) => {
 const buildHeader = () => {
 	const header = document.createElement("header");
 	const title = document.createElement("h1");
-	title.textContent = profile.name;
+	const firstName = createEl("span", "name-primary");
+	firstName.textContent = "Jayanth";
+	const restName = createEl("span", "name-secondary");
+	restName.textContent = " Krishna Chundru";
+	title.append(firstName, restName);
 	const nav = buildNavRow([
 		{ label: "Home", href: "./", current: true },
 		{ label: "Research", href: "#publications" },
@@ -279,7 +283,7 @@ const addNewsToggle = (section, list) => {
 };
 
 const buildNewsSection = () => {
-	const section = createEl("section", "list-block");
+	const section = createEl("section", "list-block news-section");
 	const title = createEl("div", "section-title");
 	title.textContent = "News";
 	const list = createEl("ul", "news-list");
