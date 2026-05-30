@@ -40,9 +40,36 @@
 					</nav>
 				</header>
 
-				<section class="gallery-section" aria-label="Academic gallery">
+				<nav class="gallery-subnav" aria-label="Gallery categories">
+					<button type="button" class="is-active" data-gallery-filter="academics" aria-pressed="true">Academics</button>
+					<button type="button" data-gallery-filter="fun" aria-pressed="false">Fun Things</button>
+				</nav>
+
+				<section class="gallery-section" aria-label="Gallery photos">
 					<div class="gallery-grid">
-						<article class="gallery-item">
+						<article class="gallery-item" data-gallery-category="fun" hidden>
+							<img src="./fun/Bender%20Mountain%20Loop%20Trail.JPG" alt="Bender Mountain Loop Trail" loading="lazy" />
+							<div class="gallery-caption">
+								<p>(May, 2026) CincyNLP Group - Bender Mountain Loop Trail</p>
+							</div>
+						</article>
+						<article class="gallery-item" data-gallery-category="fun" hidden>
+							<img src="./fun/Hofbrahaus-Newport.JPG" alt="Hofbrahaus Newport" loading="lazy" />
+							<div class="gallery-caption">
+								<p>(May, 2026) CincyNLP Group - Hofbrahaus Newport</p>
+							</div>
+						</article>
+						<article class="gallery-item" data-gallery-category="fun" hidden>
+							<img
+								src="./fun/Bender%20Mountain%20loop%20Trail%202.JPG"
+								alt="Bender Mountain Loop Trail"
+								loading="lazy"
+							/>
+							<div class="gallery-caption">
+								<p>(May, 2026) CincyNLP Group - Bender Mountain Loop Trail</p>
+							</div>
+						</article>
+						<article class="gallery-item" data-gallery-category="academics">
 							<img
 								src="../images/academics/2026%20CS%20Awards-Best%20Masters%20student.jpg"
 								alt="2026 Computer Science awards best masters student recognition"
@@ -52,19 +79,13 @@
 								<p>(2026) CS Awards - Best Masters Student</p>
 							</div>
 						</article>
-						<article class="gallery-item">
+						<article class="gallery-item" data-gallery-category="academics">
 							<img src="../images/academics/CincyNLP.jpg" alt="CincyNLP lab group" loading="lazy" />
 							<div class="gallery-caption">
 								<p>(2025) CincyNLP Group</p>
 							</div>
 						</article>
-						<article class="gallery-item">
-							<img src="../images/academics/Rev_UC_Hackathon.jpeg" alt="Rev UC Hackathon" loading="lazy" />
-							<div class="gallery-caption">
-								<p>(2025) Rev UC Hackathon</p>
-							</div>
-						</article>
-						<article class="gallery-item">
+						<article class="gallery-item" data-gallery-category="academics">
 							<img
 								src="../images/academics/Recieving%20Silver%20Medal.jpeg"
 								alt="Receiving silver medal for academic excellence"
@@ -74,13 +95,13 @@
 								<p>(2023) Silver Medalist - Department 2nd Ranker</p>
 							</div>
 						</article>
-						<article class="gallery-item">
+						<article class="gallery-item" data-gallery-category="academics">
 							<img src="../images/academics/Undergrad.jpg" alt="Undergraduate academic moment" loading="lazy" />
 							<div class="gallery-caption">
 								<p>(2023) Bachelor's Graduation 2019-23 Batch</p>
 							</div>
 						</article>
-						<article class="gallery-item">
+						<article class="gallery-item" data-gallery-category="academics">
 							<img
 								src="../images/academics/Undergrad%204th%20year%20Topper.jpg"
 								alt="Undergraduate fourth year topper recognition"
@@ -141,6 +162,31 @@
 				});
 
 				syncToggle();
+			})();
+
+			(() => {
+				const filterButtons = document.querySelectorAll("[data-gallery-filter]");
+				const galleryItems = document.querySelectorAll("[data-gallery-category]");
+
+				const showCategory = (category) => {
+					filterButtons.forEach((button) => {
+						const isActive = button.dataset.galleryFilter === category;
+						button.classList.toggle("is-active", isActive);
+						button.setAttribute("aria-pressed", String(isActive));
+					});
+
+					galleryItems.forEach((item) => {
+						item.hidden = item.dataset.galleryCategory !== category;
+					});
+				};
+
+				filterButtons.forEach((button) => {
+					button.addEventListener("click", () => {
+						showCategory(button.dataset.galleryFilter);
+					});
+				});
+
+				showCategory("academics");
 			})();
 
 			(() => {
