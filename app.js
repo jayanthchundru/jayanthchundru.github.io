@@ -150,6 +150,8 @@ const buildHeader = () => {
 	const restName = createEl("span", "name-secondary");
 	restName.textContent = " Krishna Chundru";
 	title.append(firstName, restName);
+	const nameTag = createEl("p", "name-tag");
+	nameTag.textContent = "AI Researcher · Software Engineer";
 	const nav = buildNavRow([
 		{ label: "Home", href: "./", current: true },
 		{ label: "Research", href: "#publications" },
@@ -160,7 +162,7 @@ const buildHeader = () => {
 	const separator = createEl("span", "nav-separator", { "aria-hidden": "true" });
 	separator.textContent = "·";
 	nav.append(separator, buildThemeToggle());
-	header.append(title, nav);
+	header.append(title, nameTag, nav);
 	return header;
 };
 
