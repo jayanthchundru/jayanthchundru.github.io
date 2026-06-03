@@ -69,6 +69,7 @@ main,
 #app,
 header .nav-row,
 .theme-toggle,
+.name-tag,
 .profile-photo,
 .news-section,
 .news-section .section-title,
@@ -198,6 +199,13 @@ h1 {
 
 .name-secondary {
 	font-weight: 400;
+}
+
+.name-tag {
+	margin: -2px 0 14px;
+	color: var(--muted);
+	font-size: 1.05rem;
+	line-height: 1.25;
 }
 
 .theme-toggle {
