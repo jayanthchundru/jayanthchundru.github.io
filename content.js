@@ -15,7 +15,7 @@ export const introSegments = [
 	{
 		type: "text",
 		value:
-			". I work on large language models, multimodal agents, and efficient inference methods. I am currently advised by ",
+			". I work on large language models, multimodal agents, and model efficiency. I am currently advised by ",
 	},
 	{
 		type: "link",
