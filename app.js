@@ -151,7 +151,7 @@ const buildHeader = () => {
 	restName.textContent = " Krishna Chundru";
 	title.append(firstName, restName);
 	const nameTag = createEl("p", "name-tag");
-	nameTag.textContent = "AI Researcher · Software Engineer";
+	nameTag.textContent = "Graduate Researcher . Software Engineer";
 	const nav = buildNavRow([
 		{ label: "Home", href: "./", current: true },
 		{ label: "Research", href: "#publications" },

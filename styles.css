@@ -202,9 +202,9 @@ h1 {
 }
 
 .name-tag {
-	margin: -2px 0 14px;
+	margin: -5px 0 14px;
 	color: var(--muted);
-	font-size: 1.05rem;
+	font-size: 0.95rem;
 	line-height: 1.25;
 }
 
@@ -689,6 +689,10 @@ a:hover {
 }
 
 @media (max-width: 640px) {
+	.name-tag {
+		display: none;
+	}
+
 	:root {
 		--page-gutter: 1rem;
 		--paper-inset: 0.75rem;
