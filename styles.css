@@ -782,7 +782,7 @@ a:hover {
 	}
 
 	.gallery-grid {
-		columns: 1;
+		grid-template-columns: 1fr;
 	}
 
 	.affiliations-list {
@@ -954,20 +954,27 @@ a:hover {
 }
 
 .gallery-grid {
-	columns: 2 14rem;
-	column-gap: 16px;
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 18px 16px;
 }
 
 .gallery-item {
 	position: relative;
-	display: inline-block;
+	display: block;
 	width: 100%;
-	margin: 0 0 18px;
+	margin: 0;
 	break-inside: avoid;
 }
 
 .gallery-item[hidden] {
 	display: none;
+}
+
+@media (max-width: 640px) {
+	.gallery-grid {
+		grid-template-columns: 1fr;
+	}
 }
 
 .gallery-item img,
