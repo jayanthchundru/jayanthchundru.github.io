@@ -14,8 +14,28 @@ export const introSegments = [
 	},
 	{
 		type: "text",
-		value:
-			". I work on large language models, multimodal agents, and model efficiency. I am currently advised by ",
+		value: ". Research interests: ",
+	},
+	{
+		type: "text",
+		value: "large language models",
+		className: "text-highlight highlight-purple",
+	},
+	{ type: "text", value: ", " },
+	{
+		type: "text",
+		value: "multimodal agents",
+		className: "text-highlight highlight-orange",
+	},
+	{ type: "text", value: ", and " },
+	{
+		type: "text",
+		value: "model efficiency",
+		className: "text-highlight highlight-green",
+	},
+	{
+		type: "text",
+		value: ". I am currently advised by ",
 	},
 	{
 		type: "link",
@@ -31,7 +51,16 @@ export const introSegments = [
 	{
 		type: "text",
 		value:
-			" lab. Before graduate school, I worked as a Software Engineer at ",
+			" lab. Before graduate school, I worked as a ",
+	},
+	{
+		type: "text",
+		value: "Software Engineer",
+		className: "text-highlight highlight-blue",
+	},
+	{
+		type: "text",
+		value: " at ",
 	},
 	{
 		type: "link",
@@ -47,7 +76,16 @@ export const introSegments = [
 	{
 		type: "text",
 		value:
-			", Chennai, and received a Silver Medal for academic excellence in the 2023 graduating class.  ",
+			", Chennai, and received a ",
+	},
+	{
+		type: "text",
+		value: "Silver Medal for academic excellence",
+		className: "text-highlight highlight-orange",
+	},
+	{
+		type: "text",
+		value: " in the 2023 graduating class.  ",
 	},
 ];
 
