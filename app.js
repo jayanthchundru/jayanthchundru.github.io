@@ -238,7 +238,7 @@ const buildContactLine = () => {
 		anchor.textContent = link.label;
 		contactLine.append(anchor);
 		if (index < contactLinks.length - 1) {
-			contactLine.append(document.createTextNode(" "));
+			contactLine.append(document.createTextNode(" / "));
 		}
 	});
 	return contactLine;
