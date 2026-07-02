@@ -56,7 +56,6 @@ export const introSegments = [
 	{
 		type: "text",
 		value: "Software Engineer",
-		className: "text-highlight highlight-blue",
 	},
 	{
 		type: "text",
