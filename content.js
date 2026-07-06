@@ -267,7 +267,7 @@ export const publications = [
 		thumb: "images/pubs/EMNLP2025_FrameIdentification.png",
 		tags: ["LLMs", "Computational Semantics"],
 		abstract:
-			"Evaluated LLMs inherent frame-semantic knowledge on the FrameNet dataset using the Frame Identification task, where structured prompting techniques, frame-definition generation experiments, and further fine-tuning on the Llama 3.1 8B model showed strong in-domain performance and cross-domain generalization.",
+			"Investigated whether LLMs encode frame-semantic knowledge by evaluating on frame identification task using FrameNet dataset, We developed structured prompting and frame-definition generation methods, and fine-tuned Llama 3.1 8B to demonstrate strong in-domain performance and cross-domain generalization.",
 	},
 ];
 
