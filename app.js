@@ -11,6 +11,7 @@ import {
 
 const THEME_STORAGE_KEY = "portfolio-theme";
 const NEWS_VISIBLE_ITEM_LIMIT = 5;
+const SHOW_VISITOR_COUNTER = true;
 
 const createEl = (tag, className, attrs = {}) => {
 	const element = document.createElement(tag);
@@ -595,7 +596,23 @@ const buildFooter = () => {
 	const footer = document.createElement("footer");
 	const credit = createEl("p", "footer-note");
 	appendSegments(credit, templateCredits);
-	footer.append(credit);
+	const visitorCounter = createEl("a", "visitor-counter", {
+		href: "https://info.flagcounter.com/KZna",
+		"aria-label": "View visitor flag counter",
+	});
+	const visitorCounterImage = createEl("img", "", {
+		src: "https://s01.flagcounter.com/count2/KZna/bg_FFFFFF/txt_000000/border_CCCCCC/columns_3/maxflags_12/viewers_0/labels_0/pageviews_0/flags_0/percent_0/",
+		alt: "Flag Counter",
+	});
+	if (SHOW_VISITOR_COUNTER) {
+		footer.classList.add("footer-with-counter");
+	} else {
+		visitorCounter.classList.add("is-hidden");
+		visitorCounter.setAttribute("aria-hidden", "true");
+		visitorCounter.setAttribute("tabindex", "-1");
+	}
+	visitorCounter.append(visitorCounterImage);
+	footer.append(credit, visitorCounter);
 	return footer;
 };
 
