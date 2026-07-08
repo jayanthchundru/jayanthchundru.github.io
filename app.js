@@ -11,7 +11,7 @@ import {
 
 const THEME_STORAGE_KEY = "portfolio-theme";
 const NEWS_VISIBLE_ITEM_LIMIT = 5;
-const SHOW_VISITOR_COUNTER = true;
+const SHOW_VISITOR_COUNTER = false;
 
 const createEl = (tag, className, attrs = {}) => {
 	const element = document.createElement(tag);
