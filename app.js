@@ -156,7 +156,6 @@ const buildHeader = () => {
 	const nav = buildNavRow([
 		{ label: "Home", href: "./", current: true },
 		{ label: "Research", href: "#publications" },
-		// { label: "Projects", href: "#projects" },
 		{ label: "Blogs", href: "blogs/" },
 		{ label: "Gallery", href: "gallery/" },
 	]);

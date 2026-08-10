@@ -21,17 +21,12 @@ export const introSegments = [
 		value: "large language models",
 		className: "text-highlight highlight-purple",
 	},
-	{ type: "text", value: ", " },
+	{ type: "text", value: "" },
+	{ type: "text", value: " and " },
 	{
 		type: "text",
 		value: "multimodal agents",
 		className: "text-highlight highlight-orange",
-	},
-	{ type: "text", value: ", and " },
-	{
-		type: "text",
-		value: "model efficiency",
-		className: "text-highlight highlight-green",
 	},
 	{
 		type: "text",
@@ -153,14 +148,13 @@ export const templateCredits = [
 	{ type: "text", value: "Credits: ", className: "footer-credit-extra" },
 	{
 		type: "link",
-		label: "al-folio",
+		label: "[1]",
 		href: "https://github.com/alshedivat/al-folio",
 		className: "footer-credit-extra",
 	},
-	{ type: "text", value: " and ", className: "footer-credit-extra" },
 	{
 		type: "link",
-		label: "Jon Barron",
+		label: "[2]",
 		href: "https://jonbarron.info/",
 		className: "footer-credit-extra",
 	},
