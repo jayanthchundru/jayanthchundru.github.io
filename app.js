@@ -629,7 +629,6 @@ const renderPortfolio = () => {
 	}
 	children.push(
 		buildIntro(),
-		buildAvailabilityLine(),
 		buildContactLine(),
 		buildNewsSection(),
 		buildAffiliationsSection(),
