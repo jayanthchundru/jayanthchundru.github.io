@@ -30,7 +30,7 @@ export const buildPageHeader = (titleText, currentPage) => {
 	const title = document.createElement("h1");
 	title.textContent = titleText;
 	const nav = createEl("nav", "nav-row", { "aria-label": "Primary" });
-	const pages = [["Home", "../", "home"], ["Research", "../research/", "research"], ["Blogs", "../blogs/", "blogs"], ["Gallery", "../gallery/", "gallery"]];
+	const pages = [["Home", "../", "home"], ["Research", "../#publications", "research"], ["Blogs", "../blogs/", "blogs"], ["Gallery", "../gallery/", "gallery"]];
 	pages.forEach(([label, href, page], index) => {
 		if (index) {
 			const separator = createEl("span", "nav-separator", { "aria-hidden": "true" });
