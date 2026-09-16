@@ -1060,6 +1060,12 @@ a:hover {
 	box-shadow: 0 10px 24px rgba(23, 32, 51, 0.08);
 }
 
+.gallery-item img.gallery-photo-pg {
+	aspect-ratio: 1;
+	object-fit: cover;
+	object-position: center 78%;
+}
+
 .gallery-placeholder {
 	display: grid;
 	place-items: center;

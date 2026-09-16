@@ -1,6 +1,6 @@
 export const profile = {
 	name: "Jayanth Krishna Chundru",
-	location: "Cincinnati, OH",
+	location: "Sunnyvale, CA",
 	availability: "Looking for full-time opportunities in AI/ML roles",
 	image: "images/Jayanth.jpeg",
 };
@@ -162,6 +162,14 @@ export const templateCredits = [
 ];
 
 export const newsItems = [
+	{
+		date: "Sep 2026",
+		segments: [
+			{ type: "text", value: "Joined as an ML Intern at " },
+			{ type: "link", label: "CanyonCode", href: "https://canyoncode.ai/", className: "news-link" },
+			{ type: "text", value: " in Sunnyvale, CA 🌴." },
+		],
+	},
 		{
 		date: "Apr 2026",
 		segments: [

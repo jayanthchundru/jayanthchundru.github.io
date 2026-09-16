@@ -113,7 +113,7 @@ const appendHighlightedText = (parent, text, highlight) => {
 };
 
 const buildLocationBadge = () => {
-	const badge = createEl("div", "location-badge", { "aria-label": "Cincinnati, Ohio" });
+	const badge = createEl("div", "location-badge", { "aria-label": profile.location });
 	badge.innerHTML = `
 		<svg viewBox="0 0 24 24" aria-hidden="true">
 			<path d="M12 2c-3.86 0-7 3.14-7 7 0 5.25 7 13 7 13s7-7.75 7-13c0-3.86-3.14-7-7-7zm0 9.2a2.2 2.2 0 1 1 0-4.4 2.2 2.2 0 0 1 0 4.4z" />
