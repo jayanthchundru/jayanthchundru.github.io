@@ -1,6 +1,7 @@
 import {
-	affiliations,
 	contactLinks,
+	education,
+	experience,
 	introSegments,
 	newsItems,
 	profile,
@@ -10,7 +11,7 @@ import {
 } from "./content.js";
 
 const THEME_STORAGE_KEY = "portfolio-theme";
-const NEWS_VISIBLE_ITEM_LIMIT = 5;
+const NEWS_VISIBLE_ITEM_LIMIT = 3;
 const SHOW_VISITOR_COUNTER = true;
 
 const createEl = (tag, className, attrs = {}) => {
@@ -297,62 +298,90 @@ const buildNewsSection = () => {
 	return section;
 };
 
-const buildAffiliation = (affiliation) => {
-	const cardClass = ["affiliation-card", affiliation.className].filter(Boolean).join(" ");
-	const hasTitleLinks = Boolean(affiliation.titleSegments);
-	const card = createEl(
-		hasTitleLinks ? "div" : "a",
-		cardClass,
-		hasTitleLinks
-			? {}
-			: {
-					href: affiliation.url,
-					target: "_blank",
-					rel: "noopener noreferrer",
-					"aria-label": affiliation.name,
-				}
-	);
-	const logoWrap = createEl("span", "affiliation-logo-wrap");
+const buildResumeEntry = (affiliation) => {
+	const item = createEl("li", "resume-item");
+	const logoWrap = createEl("div", "resume-logo-wrap", { "aria-hidden": "true" });
 	const isDark = document.documentElement.dataset.theme === "dark";
-	const logo = createEl("img", "affiliation-logo", {
+	const logo = createEl("img", "resume-logo", {
 		src: isDark && affiliation.darkImage ? affiliation.darkImage : affiliation.image,
-		alt: affiliation.name,
+		alt: "",
 		loading: "lazy",
 		"data-light-src": affiliation.darkImage ? affiliation.image : undefined,
 		"data-dark-src": affiliation.darkImage,
 	});
-	if (hasTitleLinks) {
-		const logoLink = createEl("a", "affiliation-logo-link", {
-			href: affiliation.url,
-			target: "_blank",
-			rel: "noopener noreferrer",
-			"aria-label": affiliation.name,
-		});
-		logoLink.append(logo);
-		logoWrap.append(logoLink);
-	} else {
-		logoWrap.append(logo);
-	}
+	logoWrap.append(logo);
+	const details = createEl("div", "resume-details");
+	const heading = createEl("h3", "resume-heading");
+	const organization = createEl("a", "resume-organization", {
+		href: affiliation.url,
+		target: "_blank",
+		rel: "noopener noreferrer",
+	});
+	organization.textContent = affiliation.name;
+	heading.append(organization);
 
-	const label = createEl("span", "affiliation-label");
+	const role = createEl("div", "resume-role");
 	if (affiliation.titleSegments) {
-		appendSegments(label, affiliation.titleSegments);
+		appendSegments(role, affiliation.titleSegments);
 	} else {
-		label.textContent = affiliation.title;
+		role.textContent = affiliation.title;
 	}
-	const date = createEl("span", "affiliation-date");
+	const date = createEl("span", "resume-date");
 	date.textContent = affiliation.date;
-	card.append(logoWrap, label, date);
-	return card;
+	details.append(heading, role, date);
+	if (affiliation.details?.length) {
+		const description = createEl("div", "resume-description");
+		affiliation.details.forEach((text) => {
+			const paragraph = document.createElement("p");
+			paragraph.textContent = text;
+			description.append(paragraph);
+		});
+		details.append(description);
+	}
+	item.append(logoWrap, details);
+	return item;
 };
 
-const buildAffiliationsSection = () => {
-	const section = createEl("section", "affiliations-section");
-	const list = createEl("div", "affiliations-list");
-	affiliations.forEach((affiliation) => {
-		list.append(buildAffiliation(affiliation));
+const buildInlineResumeEntry = (entry) => {
+	const item = createEl("li", "experience-item");
+	if (entry.titleSegments) {
+		appendSegments(item, entry.titleSegments);
+	} else {
+		item.append(document.createTextNode(entry.shortTitle || entry.title));
+	}
+	const organization = createEl("a", "experience-organization", {
+		href: entry.url,
+		target: "_blank",
+		rel: "noopener noreferrer",
 	});
-	section.append(list);
+	organization.textContent = entry.name;
+	const date = createEl("span", "experience-date");
+	date.textContent = `(${entry.date})`;
+	item.append(" at ", organization, " ", date);
+	if (entry.details?.length) {
+		const description = createEl("div", "resume-description");
+		entry.details.forEach((text) => {
+			const paragraph = document.createElement("p");
+			paragraph.textContent = text;
+			description.append(paragraph);
+		});
+		item.append(description);
+	}
+	return item;
+};
+
+const buildResumeSection = (id, label, entries, buildEntry = buildResumeEntry) => {
+	const section = createEl("section", "resume-section", {
+		id,
+		"aria-labelledby": `${id}-title`,
+	});
+	const title = createEl("h2", "section-title", { id: `${id}-title` });
+	title.textContent = label;
+	const list = createEl("ul", "resume-list");
+	entries.forEach((entry) => {
+		list.append(buildEntry(entry));
+	});
+	section.append(title, list);
 	return section;
 };
 
@@ -416,8 +445,11 @@ const buildPublication = (publication) => {
 };
 
 const buildPublicationSection = () => {
-	const section = createEl("section", "list-block", { id: "publications" });
-	const title = createEl("div", "section-title");
+	const section = createEl("section", "list-block", {
+		id: "publications",
+		"aria-labelledby": "publications-title",
+	});
+	const title = createEl("h2", "section-title", { id: "publications-title" });
 	title.textContent = "Publications";
 	const list = createEl("div", "pub-list");
 	publications.forEach((publication) => {
@@ -631,8 +663,9 @@ const renderPortfolio = () => {
 		buildIntro(),
 		buildContactLine(),
 		buildNewsSection(),
-		buildAffiliationsSection(),
 		buildPublicationSection(),
+		buildResumeSection("experience", "Experience", experience, buildInlineResumeEntry),
+		buildResumeSection("education", "Education", education, buildInlineResumeEntry),
 		// buildProjectsSection(),
 		buildFooter()
 	);

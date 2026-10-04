@@ -93,7 +93,15 @@ export const contactLinks = [
 	},
 ];
 
-export const affiliations = [
+export const experience = [
+	{
+		name: "CanyonCode",
+		title: "ML Intern",
+		date: "Sep 2026 – Present",
+		image: "images/logos/canyoncode-light.svg",
+		darkImage: "images/logos/canyoncode.svg",
+		url: "https://canyoncode.ai/",
+	},
 	{
 		name: "1819 Innovation Hub",
 		title: "Research Assistant (P&G)",
@@ -107,7 +115,7 @@ export const affiliations = [
 			},
 			{ type: "text", value: ")" },
 		],
-		date: "May '25 - Present",
+		date: "May 2025 – Present",
 		image: "images/logos/innovationhub.png",
 		darkImage: "images/logos/innovationhub.D.png",
 		url: "https://innovation.uc.edu/",
@@ -115,29 +123,50 @@ export const affiliations = [
 	{
 		name: "CincyNLP",
 		title: "Graduate Researcher",
-		date: "Aug '24 - Present",
+		date: "Aug 2024 – Present",
 		image: "images/logos/CincyNLP.png",
 		url: "https://jiangtianyu.com/lab/",
 	},
 	{
-		name: "University of Cincinnati",
-		title: "M.S. Computer Science",
-		date: "Aug '24 - Present",
-		image: "images/logos/UC.png",
-		url: "https://www.uc.edu/",
-	},
-	{
 		name: "CommScope",
 		title: "Software Engineer",
-		date: "July '22 - July '24",
+		date: "June 2023 – May 2024",
 		image: "images/logos/COMM.png",
 		darkImage: "images/logos/COMM.D.png",
 		url: "https://www.commscope.com/",
 	},
 	{
+		name: "CommScope",
+		title: "Software Engineer Intern",
+		date: "July 2022 – May 2023",
+		image: "images/logos/COMM.png",
+		darkImage: "images/logos/COMM.D.png",
+		url: "https://www.commscope.com/",
+	},
+];
+
+export const education = [
+	{
+		name: "University of Cincinnati",
+		title: "Master of Science – MS, Computer Science (Research)",
+		shortTitle: "M.S. Computer Science (Research)",
+		date: "Aug 2024 – Present",
+		details: [
+			"Received Best Master’s Student Award 2026.",
+			"Received GIA Award: $10,799 per semester.",
+		],
+		image: "images/logos/UC.png",
+		url: "https://www.uc.edu/",
+	},
+	{
 		name: "SRMIST Ramapuram",
-		title: "B.Tech CSE",
-		date: "July '19 - May '23",
+		title: "Bachelor of Technology – BTech, Computer Science and Engineering with specialization in Internet of Things",
+		shortTitle: "B.Tech in Computer Science and Engineering, specializing in Internet of Things",
+		date: "July 2019 – May 2023",
+		details: [
+			"Grade: CGPA – 9.68/10",
+			"Department 2nd ranker across 3 Chennai campuses. (Silver Medalist)",
+		],
 		image: "images/logos/SRM.png",
 		url: "https://srmrmp.edu.in/",
 	},

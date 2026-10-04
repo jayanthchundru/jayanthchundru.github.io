@@ -481,10 +481,6 @@ a:hover {
 	background-color: var(--paper);
 }
 
-#publications .section-title {
-	font-size: 0.82rem;
-}
-
 .news-list {
 	list-style: none;
 	padding: 0;
@@ -553,86 +549,138 @@ a:hover {
 	text-decoration: underline;
 }
 
-.affiliations-section {
+.resume-section {
+	--resume-logo-size: 3.5rem;
 	clear: both;
-	margin: 26px 0 4px;
+	margin: 20px 0 0;
 }
 
-.affiliations-section + #publications {
-	margin-top: 34px;
+#publications {
+	clear: both;
+	margin: 20px 0 0;
+	padding-top: 0;
 }
 
-.affiliations-list {
-	display: grid;
-	grid-template-columns: repeat(5, minmax(0, 1fr));
-	gap: clamp(0.7rem, 2vw, 1.4rem);
-	align-items: start;
-}
-
-.affiliation-card {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	min-width: 0;
-	padding: 0;
+#publications .section-title,
+.resume-section .section-title {
+	margin: 0 0 0.65rem;
 	color: var(--text);
-	text-align: center;
-	text-decoration: none;
+	font-size: 1.35rem;
+	line-height: 1.3;
+	text-transform: none;
 }
 
-.affiliation-card:hover {
-	color: var(--accent);
-	text-decoration: none;
+.resume-list {
+	list-style: none;
+	padding: 0;
+	margin: 0;
 }
 
-.affiliation-logo-link {
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
+#publications .section-title,
+#experience .section-title,
+#education .section-title {
+	padding-bottom: 0.3rem;
+	border-bottom: 1px solid var(--rule);
 }
 
-.affiliation-logo-wrap {
+#experience .resume-list,
+#education .resume-list {
+	list-style: disc;
+	padding-left: 1.15rem;
+}
+
+.experience-item {
+	padding: 0.12rem 0;
+	font-size: 0.96rem;
+	line-height: 1.45;
+}
+
+.experience-date {
+	color: var(--muted);
+}
+
+#education .experience-item + .experience-item {
+	margin-top: 0.5rem;
+}
+
+#education .resume-description {
+	margin-top: 0.2rem;
+}
+
+.resume-item {
+	display: grid;
+	grid-template-columns: var(--resume-logo-size) minmax(0, 1fr);
+	align-items: start;
+	gap: 0.75rem;
+	padding: 0.75rem 0;
+	border-bottom: 1px solid var(--rule);
+}
+
+.resume-item:first-child {
+	padding-top: 0;
+}
+
+.resume-item:last-child {
+	padding-bottom: 0;
+	border-bottom: 0;
+}
+
+.resume-details {
+	min-width: 0;
+}
+
+.resume-logo-wrap {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	width: 100%;
-	height: 5rem;
-	margin-bottom: 0.65rem;
+	width: var(--resume-logo-size);
+	height: var(--resume-logo-size);
+	overflow: hidden;
 }
 
-.affiliation-logo {
+.resume-logo {
 	display: block;
-	max-width: 100%;
-	max-height: 3rem;
+	width: 100%;
+	height: 100%;
 	object-fit: contain;
 }
 
-.affiliation-logo[src$="SRM.png"] {
-	max-width: 132%;
-	max-height: 5.8rem;
-	transform: scale(1.22);
+/* Compensate for padding baked into the source images. */
+.resume-logo[src$="SRM.png"] {
+	transform: scale(1.9);
 }
 
-.affiliation-logo[src$="CincyNLP.png"] {
-	max-height: 3.35rem;
-	transform: scale(1.12);
+.resume-logo[src$="CincyNLP.png"] {
+	transform: scale(1.02);
 }
 
-.affiliation-logo[src*="innovationhub"] {
-	max-height: 3.8rem;
-	transform: scale(1.18);
+.resume-logo[src$="innovationhub.png"] {
+	transform: scale(1.04);
 }
 
-.affiliation-logo[src$="innovationhub.D.png"] {
-	max-height: 4.25rem;
-	transform: scale(1.08);
+.resume-logo[src$="innovationhub.D.png"] {
+	transform: scale(1.14);
 }
 
-.affiliation-label {
-	display: block;
+.resume-heading {
+	margin: 0 0 0.1rem;
+	font-size: 1.08rem;
+	font-weight: 600;
+	line-height: 1.3;
+}
+
+.resume-organization {
 	color: var(--text);
-	font-size: 0.92rem;
-	line-height: 1.22;
+}
+
+.resume-organization:hover,
+.affiliation-label-link:hover {
+	color: var(--accent);
+}
+
+.resume-role {
+	font-size: 0.96rem;
+	line-height: 1.4;
 }
 
 .affiliation-label-link {
@@ -641,22 +689,33 @@ a:hover {
 	text-underline-offset: 0.12em;
 }
 
-.affiliation-label-link:hover {
-	color: var(--accent);
+.resume-date {
+	display: block;
+	margin-top: 0.1rem;
+	color: var(--muted);
+	font-size: 0.92rem;
+	line-height: 1.4;
 }
 
-.affiliation-date {
-	display: block;
-	margin-top: 0.18rem;
-	color: var(--muted);
-	font-size: 0.82rem;
-	line-height: 1.2;
+.resume-description {
+	margin-top: 0.45rem;
+	font-size: 0.94rem;
+	line-height: 1.45;
+}
+
+.resume-description p {
+	margin: 0;
+	text-align: left;
+}
+
+.resume-description p + p {
+	margin-top: 0.15rem;
 }
 
 .pub-list {
 	display: grid;
 	gap: 8px;
-	margin-top: 12px;
+	margin-top: 0;
 }
 
 .pub-item {
@@ -666,6 +725,14 @@ a:hover {
 	align-items: start;
 	padding: 8px 0 8px;
 	border-top: none;
+}
+
+.pub-item:first-child {
+	padding-top: 0;
+}
+
+.pub-item:last-child {
+	padding-bottom: 0;
 }
 
 .pub-thumb {
@@ -847,51 +914,12 @@ a:hover {
 		grid-template-columns: 1fr;
 	}
 
-	.affiliations-list {
-		grid-template-columns: repeat(3, minmax(0, 1fr));
-		gap: 0.35rem;
+	.resume-section {
+		--resume-logo-size: 2.75rem;
 	}
 
-	.affiliation-card {
-		text-align: center;
-	}
-
-	.affiliation-logo-wrap {
-		height: 2.6rem;
-		margin-bottom: 0.34rem;
-	}
-
-	.affiliation-logo {
-		max-height: 1.9rem;
-	}
-
-	.affiliation-logo[src$="SRM.png"] {
-		max-width: 145%;
-		max-height: 3.25rem;
-		transform: scale(1.08);
-	}
-
-	.affiliation-logo[src$="CincyNLP.png"] {
-		max-height: 2rem;
-		transform: scale(1.04);
-	}
-
-	.affiliation-logo[src*="innovationhub"] {
-		max-height: 2.25rem;
-		transform: scale(1.08);
-	}
-
-	.affiliation-logo[src$="innovationhub.D.png"] {
-		max-height: 2.45rem;
-		transform: scale(1.04);
-	}
-
-	.affiliation-label {
-		font-size: 0.58rem;
-	}
-
-	.affiliation-date {
-		font-size: 0.54rem;
+	.resume-item {
+		gap: 0.6rem;
 	}
 
 	.pub-thumb {

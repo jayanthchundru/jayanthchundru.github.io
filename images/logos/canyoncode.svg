@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-8.5 0 271 348" role="img" aria-labelledby="title desc">
+  <title id="title">Canyon Code rotated Interlock reversed mark</title>
+  <desc id="desc">90-degree rotated Interlock mark for dark backgrounds: white C opens upward and Signal Green C opens downward.</desc>
+  <g transform="matrix(0 1 -1 0 271 0)">
+  <g transform="translate(40 36)" shape-rendering="geometricPrecision">
+    <g transform="translate(192 0) scale(-1 1) translate(-7.9235 203.6284) scale(0.273224 -0.273224)">
+      <path fill="#F7F8F5" d="M29 350Q29 456 79.5 539.5Q130 623 219.0 669.5Q308 716 419 716Q521 716 601.0 680.0Q681 644 733 576L584 443Q519 525 431 525Q357 525 312.0 477.5Q267 430 267 350Q267 270 312.0 222.5Q357 175 431 175Q519 175 584 257L733 124Q681 56 601.0 20.0Q521 -16 419 -16Q308 -16 219.0 30.5Q130 77 79.5 160.5Q29 244 29 350Z"/>
+    </g>
+    <g transform="translate(76 0) translate(-7.9235 203.6284) scale(0.273224 -0.273224)">
+      <path fill="#21C768" d="M29 350Q29 456 79.5 539.5Q130 623 219.0 669.5Q308 716 419 716Q521 716 601.0 680.0Q681 644 733 576L584 443Q519 525 431 525Q357 525 312.0 477.5Q267 430 267 350Q267 270 312.0 222.5Q357 175 431 175Q519 175 584 257L733 124Q681 56 601.0 20.0Q521 -16 419 -16Q308 -16 219.0 30.5Q130 77 79.5 160.5Q29 244 29 350Z"/>
+    </g>
+  </g>
+</g>
+</svg>
