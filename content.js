@@ -291,6 +291,7 @@ export const publications = [
 		authors: "Cohere Community",
 		venue: "Multilingual Representation Learning Workshop - EMNLP 2026",
 		links: [],
+		tags: ["Multilingual", "Culture"],
 		abstract: "Contributed towards Telugu Riddles and Model Evaluation.",
 	},
 	{
