@@ -399,13 +399,17 @@ const buildPublication = (publication) => {
 	const content = createEl("div", "pub-content");
 
 	const title = createEl("h3", "pub-title");
-	const titleLink = createEl("a", "", {
-		href: publication.url,
-		target: "_blank",
-		rel: "noopener noreferrer",
-	});
-	titleLink.textContent = publication.title;
-	title.append(titleLink);
+	if (publication.url) {
+		const titleLink = createEl("a", "", {
+			href: publication.url,
+			target: "_blank",
+			rel: "noopener noreferrer",
+		});
+		titleLink.textContent = publication.title;
+		title.append(titleLink);
+	} else {
+		title.textContent = publication.title;
+	}
 
 	const authors = createEl("div", "pub-authors");
 	appendHighlightedText(authors, publication.authors, profile.name);

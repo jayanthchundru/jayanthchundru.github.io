@@ -287,6 +287,13 @@ export const newsItems = [
 
 export const publications = [
 	{
+		title: "CulturalRiddles: A Multicultural Benchmark of Riddles",
+		authors: "Cohere Community",
+		venue: "Multilingual Representation Learning Workshop - EMNLP 2026",
+		links: [],
+		abstract: "Contributed towards Telugu Riddles and Model Evaluation.",
+	},
+	{
 		title: "Do LLMs Encode Frame Semantics? Evidence From Frame Identification",
 		url: "https://aclanthology.org/2025.emnlp-main.1499.pdf",
 		authors: "Jayanth Krishna Chundru, Rudrashis Poddar, Jie Cao, Tianyu Jiang",
