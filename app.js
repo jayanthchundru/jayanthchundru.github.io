@@ -11,7 +11,7 @@ import {
 } from "./content.js";
 
 const THEME_STORAGE_KEY = "portfolio-theme";
-const NEWS_VISIBLE_ITEM_LIMIT = 3;
+const NEWS_VISIBLE_ITEM_LIMIT = 4;
 const SHOW_VISITOR_COUNTER = true;
 
 const createEl = (tag, className, attrs = {}) => {
@@ -318,7 +318,11 @@ const buildResumeEntry = (affiliation) => {
 		rel: "noopener noreferrer",
 	});
 	organization.textContent = affiliation.name;
-	heading.append(organization);
+	if (affiliation.organizationSegments) {
+		appendSegments(heading, affiliation.organizationSegments);
+	} else {
+		heading.append(organization);
+	}
 
 	const role = createEl("div", "resume-role");
 	if (affiliation.titleSegments) {
@@ -357,7 +361,13 @@ const buildInlineResumeEntry = (entry) => {
 	organization.textContent = entry.name;
 	const date = createEl("span", "experience-date");
 	date.textContent = `(${entry.date})`;
-	item.append(" at ", organization, " ", date);
+	item.append(" at ");
+	if (entry.organizationSegments) {
+		appendSegments(item, entry.organizationSegments);
+	} else {
+		item.append(organization);
+	}
+	item.append(" ", date);
 	if (entry.details?.length) {
 		const description = createEl("div", "resume-description");
 		entry.details.forEach((text) => {
@@ -385,15 +395,44 @@ const buildResumeSection = (id, label, entries, buildEntry = buildResumeEntry) =
 	return section;
 };
 
+const openPublicationImage = (image) => {
+	const dialog = createEl("dialog", "publication-lightbox", {
+		"aria-label": image.alt,
+	});
+	const close = createEl("button", "publication-lightbox-close", {
+		type: "button",
+		"aria-label": "Close enlarged image",
+		autofocus: "",
+	});
+	close.textContent = "×";
+	const enlargedImage = createEl("img", "", {
+		src: image.currentSrc || image.src,
+		alt: image.alt,
+	});
+	close.addEventListener("click", () => dialog.close());
+	dialog.addEventListener("click", (event) => {
+		if (event.target === dialog) dialog.close();
+	});
+	dialog.addEventListener("close", () => dialog.remove(), { once: true });
+	dialog.append(close, enlargedImage);
+	document.body.append(dialog);
+	dialog.showModal();
+};
+
 const buildPublication = (publication) => {
 	const article = createEl("article", "pub-item");
 	if (publication.thumb) {
-		const thumb = createEl("div", "pub-thumb");
+		const thumb = createEl("button", "pub-thumb", {
+			type: "button",
+			"aria-label": `Enlarge image for ${publication.title}`,
+			"aria-haspopup": "dialog",
+		});
 		const image = createEl("img", "pub-thumb-image", {
 			src: publication.thumb,
 			alt: publication.title,
 		});
 		thumb.append(image);
+		thumb.addEventListener("click", () => openPublicationImage(image));
 		article.append(thumb);
 	}
 	const content = createEl("div", "pub-content");

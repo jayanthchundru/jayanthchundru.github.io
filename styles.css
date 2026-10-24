@@ -737,6 +737,52 @@ a:hover {
 
 .pub-thumb {
 	align-self: start;
+	position: relative;
+	width: 100%;
+	padding: 0;
+	border: 0;
+	background: transparent;
+	cursor: zoom-in;
+}
+
+.pub-thumb:focus-visible,
+.publication-lightbox-close:focus-visible {
+	outline: 2px solid var(--accent);
+	outline-offset: 4px;
+}
+
+.publication-lightbox {
+	max-width: 94vw;
+	max-height: 94vh;
+	padding: 3.5rem 1rem 1rem;
+	border: 0;
+	border-radius: 8px;
+	background: var(--paper);
+}
+
+.publication-lightbox::backdrop {
+	background: rgba(15, 17, 21, 0.86);
+}
+
+.publication-lightbox img {
+	display: block;
+	max-width: 100%;
+	max-height: calc(94vh - 4.5rem);
+	object-fit: contain;
+}
+
+.publication-lightbox-close {
+	position: absolute;
+	top: 0.5rem;
+	right: 0.5rem;
+	width: 2.5rem;
+	height: 2.5rem;
+	border: 0;
+	border-radius: 50%;
+	color: var(--text);
+	background: var(--paper);
+	font-size: 1.75rem;
+	cursor: pointer;
 }
 
 .pub-thumb-image {

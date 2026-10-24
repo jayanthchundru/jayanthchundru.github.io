@@ -103,22 +103,28 @@ export const experience = [
 		url: "https://canyoncode.ai/",
 	},
 	{
-		name: "1819 Innovation Hub",
-		title: "Research Assistant (P&G)",
-		titleSegments: [
-			{ type: "text", value: "Research Assistant (" },
+		name: "Procter & Gamble",
+		title: "Research Assistant",
+		organizationSegments: [
 			{
 				type: "link",
-				label: "P&G",
+				label: "Procter & Gamble",
 				href: "https://us.pg.com/",
-				className: "affiliation-label-link",
+				className: "experience-organization",
+			},
+			{ type: "text", value: " (" },
+			{
+				type: "link",
+				label: "1819 Innovation Hub",
+				href: "https://innovation.uc.edu/",
+				className: "experience-organization",
 			},
 			{ type: "text", value: ")" },
 		],
 		date: "May 2025 – Present",
 		image: "images/logos/innovationhub.png",
 		darkImage: "images/logos/innovationhub.D.png",
-		url: "https://innovation.uc.edu/",
+		url: "https://us.pg.com/",
 	},
 	{
 		name: "CincyNLP",
@@ -288,9 +294,15 @@ export const newsItems = [
 export const publications = [
 	{
 		title: "CulturalRiddles: A Multicultural Benchmark of Riddles",
+		url: "https://arxiv.org/pdf/2610.29968",
 		authors: "Cohere Community",
 		venue: "Multilingual Representation Learning Workshop - EMNLP 2026",
-		links: [],
+		links: [
+			{ label: "[paper]", href: "https://arxiv.org/pdf/2610.29968" },
+			{ label: "[code]", href: "https://github.com/Cohere-Labs-Community/CulturalRiddles" },
+			{ label: "[blog]", href: "https://cohere.com/blog/can-ai-understand-culture" },
+		],
+		thumb: "images/pubs/Cultural_Riddles.png",
 		tags: ["Multilingual", "Culture"],
 		abstract: "Contributed towards Telugu Riddles and Model Evaluation.",
 	},
