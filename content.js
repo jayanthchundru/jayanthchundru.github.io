@@ -6,7 +6,9 @@ export const profile = {
 };
 
 export const introSegments = [
-	{ type: "text", value: "Thanks for visiting ! I'm an MS Computer Science student at the " },
+	{ type: "text", value: "I'm " },
+	{ type: "strong", value: profile.name },
+	{ type: "text", value: ", an MS Computer Science student at the " },
 	{
 		type: "link",
 		label: "University of Cincinnati",

@@ -146,14 +146,8 @@ const buildNavRow = (items) => {
 
 const buildHeader = () => {
 	const header = document.createElement("header");
-	const title = document.createElement("h1");
-	const firstName = createEl("span", "name-primary");
-	firstName.textContent = "Jayanth";
-	const restName = createEl("span", "name-secondary");
-	restName.textContent = " Krishna Chundru";
-	title.append(firstName, restName);
-	const nameTag = createEl("p", "name-tag");
-	nameTag.textContent = "Graduate Researcher . Software Engineer";
+	const title = createEl("h1", "visually-hidden");
+	title.textContent = profile.name;
 	const nav = buildNavRow([
 		{ label: "Home", href: "./", current: true },
 		{ label: "Research", href: "#publications" },
@@ -163,7 +157,7 @@ const buildHeader = () => {
 	const separator = createEl("span", "nav-separator", { "aria-hidden": "true" });
 	separator.textContent = "·";
 	nav.append(separator, buildThemeToggle());
-	header.append(title, nameTag, nav);
+	header.append(title, nav);
 	return header;
 };
 

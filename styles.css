@@ -8,6 +8,7 @@
 	--accent: #0645ad;
 	--accent-rgb: 6, 69, 173;
 	--rule: #e8e6e0;
+	--nav-rule: #2f63ed;
 	--grid-line: transparent;
 	--paper-shadow: none;
 	--paper-inset: clamp(1rem, 3vw, 2rem);
@@ -38,6 +39,7 @@
 	--accent: #159fc2;
 	--accent-rgb: 21, 159, 194;
 	--rule: #3a3a3a;
+	--nav-rule: var(--accent);
 	--grid-line: transparent;
 	--paper-shadow: none;
 	--project-card: #1d2028;
@@ -130,13 +132,31 @@ footer {
 	margin-bottom: 22px;
 }
 
+.subpage-header {
+	margin-bottom: 0;
+}
+
+.visually-hidden {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip-path: inset(50%);
+	white-space: nowrap;
+	border: 0;
+}
+
 header .nav-row {
 	position: absolute;
 	top: -1rem;
-	right: 0.75rem;
+	left: 1.25rem;
+	right: 1.25rem;
 	justify-content: flex-end;
-	padding: 0 0.35rem;
-	background: var(--paper);
+	padding: 0.6rem 0.65rem;
+	border-bottom: 2px solid var(--nav-rule);
+	background: transparent;
 }
 
 .photo-column {
@@ -155,11 +175,13 @@ header .nav-row {
 	border: 1px solid var(--rule);
 	border-radius: 8px;
 	background: #fff;
-	box-shadow: 0 14px 34px rgba(23, 32, 51, 0.12);
+	box-shadow: 0 3px 12px rgba(23, 32, 51, 0.06);
 }
 
 .intro-note {
 	margin: 0 0 12px;
+	text-align: justify;
+	text-justify: inter-word;
 }
 
 footer {
@@ -189,9 +211,10 @@ p {
 
 p,
 .news-text,
-.pub-abstract {
-	text-align: justify;
-	text-justify: inter-word;
+.pub-abstract,
+.pub-abstract-wrap {
+	text-align: left;
+	text-justify: auto;
 	hyphens: manual;
 	overflow-wrap: break-word;
 	word-break: normal;
@@ -202,19 +225,16 @@ p,
 }
 
 h1 {
-	font-size: clamp(1.9rem, 3.2vw, 2.55rem);
-	font-weight: 400;
+	font-size: clamp(1.62rem, 2.72vw, 2.17rem);
+	font-weight: 500;
 	letter-spacing: 0;
 	margin-bottom: 8px;
 	white-space: nowrap;
 }
 
-.name-primary {
-	font-weight: 700;
-}
-
+.name-primary,
 .name-secondary {
-	font-weight: 400;
+	font-weight: inherit;
 }
 
 .name-tag {
@@ -552,18 +572,19 @@ a:hover {
 .resume-section {
 	--resume-logo-size: 3.5rem;
 	clear: both;
-	margin: 20px 0 0;
+	margin: 1.75rem 0 0;
 }
 
 #publications {
 	clear: both;
-	margin: 20px 0 0;
+	margin: 1.75rem 0 0;
 	padding-top: 0;
 }
 
 #publications .section-title,
-.resume-section .section-title {
-	margin: 0 0 0.65rem;
+.resume-section .section-title,
+.projects-section .section-title {
+	margin: 0 0 0.85rem;
 	color: var(--text);
 	font-size: 1.35rem;
 	line-height: 1.3;
@@ -578,7 +599,8 @@ a:hover {
 
 #publications .section-title,
 #experience .section-title,
-#education .section-title {
+#education .section-title,
+.projects-section .section-title {
 	padding-bottom: 0.3rem;
 	border-bottom: 1px solid var(--rule);
 }
@@ -791,7 +813,7 @@ a:hover {
 	height: auto;
 	background: #fff;
 	object-fit: cover;
-	box-shadow: 0 10px 28px rgba(20, 20, 20, 0.08);
+	box-shadow: 0 2px 8px rgba(20, 20, 20, 0.05);
 }
 
 .pub-content {
@@ -882,8 +904,7 @@ a:hover {
 		position: static;
 		justify-content: flex-start;
 		margin: 0 0 1.15rem;
-		padding: 0;
-		background: transparent;
+		padding: 0.5rem 0.35rem;
 	}
 
 	h1 {
@@ -924,8 +945,8 @@ a:hover {
 
 	.pub-abstract,
 	.pub-abstract-wrap {
-		text-align: justify;
-		text-justify: inter-word;
+		text-align: left;
+		text-justify: auto;
 		hyphens: manual;
 	}
 
@@ -948,9 +969,9 @@ a:hover {
 	.news-text {
 		display: inline;
 		font-size: 0.88rem;
-		text-align: justify;
-		text-justify: inter-word;
-		hyphens: auto;
+		text-align: left;
+		text-justify: auto;
+		hyphens: none;
 	}
 
 	.pub-item {
@@ -1054,38 +1075,50 @@ a:hover {
 
 .nav-row a[aria-current="page"] {
 	color: var(--text);
+	font-weight: 600;
 	text-decoration: none;
 }
 
 .gallery-subnav {
 	display: flex;
 	flex-wrap: wrap;
-	gap: 8px;
+	gap: 1.25rem;
 	margin: 0.3rem 0 1.1rem;
+	padding: 0;
+	list-style: none;
 }
 
 .gallery-subnav button {
 	display: inline-flex;
 	align-items: center;
-	min-height: 1.7rem;
-	padding: 0 0.7rem;
-	border: 1px solid var(--rule);
-	border-radius: 999px;
-	color: var(--accent);
-	background: var(--paper);
+	min-height: 2.4rem;
+	padding: 0.4rem 0.15rem;
+	border: 0;
+	border-bottom: 2px solid transparent;
+	border-radius: 0;
+	color: var(--muted);
+	background: transparent;
 	font: inherit;
 	font-size: 0.95rem;
-	line-height: 1;
+	font-weight: 500;
+	line-height: 1.3;
 	text-decoration: none;
 	cursor: pointer;
 }
 
-.gallery-subnav button:hover,
-.gallery-subnav button.is-active {
-	border-color: rgba(var(--accent-rgb), 0.35);
-	background: rgba(var(--accent-rgb), 0.08);
+.gallery-subnav button:hover {
 	color: var(--text);
-	text-decoration: none;
+	border-bottom-color: var(--rule);
+}
+
+.gallery-subnav button.is-active {
+	color: var(--accent);
+	border-bottom-color: var(--accent);
+}
+
+.gallery-subnav button:focus-visible {
+	outline: 2px solid var(--accent);
+	outline-offset: 3px;
 }
 
 .gallery-section {
@@ -1132,7 +1165,7 @@ a:hover {
 	border: 1px solid var(--rule);
 	border-radius: 0;
 	background: var(--paper);
-	box-shadow: 0 10px 24px rgba(23, 32, 51, 0.08);
+	box-shadow: 0 3px 12px rgba(23, 32, 51, 0.05);
 }
 
 .gallery-item img.gallery-photo-pg {
@@ -1208,7 +1241,7 @@ a:hover {
 .projects-section {
 	clear: both;
 	width: 100%;
-	margin: 34px 0 0;
+	margin: 1.75rem 0 0;
 }
 
 .project-card {
@@ -1219,14 +1252,14 @@ a:hover {
 	border: 1px solid var(--project-border);
 	border-radius: 6px;
 	background: var(--project-card);
-	box-shadow: 0 12px 28px rgba(23, 32, 51, 0.08);
+	box-shadow: 0 2px 8px rgba(23, 32, 51, 0.04);
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
 }
 
 .project-list {
 	display: grid;
 	grid-template-columns: repeat(3, minmax(0, 1fr));
-	gap: 6px;
+	gap: 12px;
 	margin-top: 0;
 }
 
@@ -1257,14 +1290,14 @@ a:hover {
 	display: flex;
 	flex-direction: column;
 	min-width: 0;
-	padding: 6px;
+	padding: 12px;
 }
 
 .project-title {
 	margin: 0 0 4px;
-	font-size: 0.78rem;
-	font-weight: 400;
-	line-height: 1.2;
+	font-size: max(14px, 0.82rem);
+	font-weight: 500;
+	line-height: 1.35;
 }
 
 .project-title a {
@@ -1292,12 +1325,12 @@ a:hover {
 
 .project-stack {
 	display: -webkit-box;
-	margin: 0 0 3px;
+	margin: 0 0 6px;
 	overflow: hidden;
 	color: var(--muted);
-	font-size: 0.58rem;
+	font-size: max(12px, 0.7rem);
 	font-weight: 500;
-	line-height: 1.25;
+	line-height: 1.45;
 	text-align: left;
 	-webkit-box-orient: vertical;
 	-webkit-line-clamp: 2;
@@ -1308,8 +1341,8 @@ a:hover {
 	margin: 0 0 4px;
 	overflow: hidden;
 	color: var(--text);
-	font-size: 0.56rem;
-	line-height: 1.25;
+	font-size: max(13px, 0.76rem);
+	line-height: 1.5;
 	text-align: left;
 	-webkit-box-orient: vertical;
 	-webkit-line-clamp: 2;
@@ -1328,8 +1361,8 @@ a:hover {
 	background: transparent;
 	color: var(--accent);
 	font: inherit;
-	font-size: 0.56rem;
-	line-height: 1.2;
+	font-size: max(13px, 0.76rem);
+	line-height: 1.5;
 	cursor: pointer;
 }
 
@@ -1777,7 +1810,7 @@ a:hover {
 
 @media (max-width: 640px) {
 	.projects-section {
-		margin-top: 34px;
+		margin-top: 1.75rem;
 	}
 
 	.project-list {
@@ -1794,7 +1827,7 @@ a:hover {
 	}
 
 	.project-body {
-		padding: 7px;
+		padding: 12px;
 	}
 
 	.project-title {
@@ -1804,17 +1837,17 @@ a:hover {
 
 	.project-stack {
 		margin-bottom: 3px;
-		font-size: 0.66rem;
+		font-size: max(12px, 0.7rem);
 		-webkit-line-clamp: 1;
 	}
 
 	.project-description {
-		font-size: 0.66rem;
+		font-size: max(13px, 0.76rem);
 		-webkit-line-clamp: 2;
 	}
 
 	.project-description-toggle {
-		font-size: 0.66rem;
+		font-size: max(13px, 0.76rem);
 	}
 }
 

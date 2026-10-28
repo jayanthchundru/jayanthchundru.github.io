@@ -26,8 +26,8 @@ const buildThemeToggle = () => {
 };
 
 export const buildPageHeader = (titleText, currentPage) => {
-	const header = document.createElement("header");
-	const title = document.createElement("h1");
+	const header = createEl("header", "subpage-header");
+	const title = createEl("h1", "visually-hidden");
 	title.textContent = titleText;
 	const nav = createEl("nav", "nav-row", { "aria-label": "Primary" });
 	const pages = [["Home", "../", "home"], ["Research", "../#publications", "research"], ["Blogs", "../blogs/", "blogs"], ["Gallery", "../gallery/", "gallery"]];
